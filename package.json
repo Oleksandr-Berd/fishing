@@ -1,0 +1,33 @@
+{
+  "name": "fishing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production node backend/server.js",
+    "dev": "cross-env NODE_ENV=development nodemon backend/server.js",
+    "client": "npm start --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oleksandr-Berd/fishing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oleksandr-Berd/fishing/issues"
+  },
+  "homepage": "https://github.com/Oleksandr-Berd/fishing#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^6.10.0",
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7"
+  }
+}
