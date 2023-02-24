@@ -1,5 +1,6 @@
 const express = require("express");
 const locKyivController = require("../controllers/locKyivController");
+const auth = require("../middlewares/auth");
 const asyncHandler = require("express-async-handler");
 
 // const app = express();
@@ -19,6 +20,7 @@ locKyivRouter.get("/locKyiv/:id", asyncHandler(locKyivController.getOne));
 locKyivRouter.put("/locKyiv/:id", asyncHandler(locKyivController.update));
 locKyivRouter.patch(
   "/locKyiv/:id",
+  auth,
   asyncHandler(locKyivController.updateDetail)
 );
 locKyivRouter.delete("/locKyiv/:id", asyncHandler(locKyivController.remove));

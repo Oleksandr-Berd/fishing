@@ -46,17 +46,55 @@ class LocKyivController {
       res.status(400);
       throw new Error("There is no location with this id");
     }
-    res.send(locKyiv);
+    res.status(200).json({
+      code: 200,
+      message: "Successful success",
+      data: locKyiv,
+    });
   };
 
-  update = (req, res) => {
-    res.send("update");
+  update = async (req, res) => {
+    const { id } = req.params;
+
+    const locKyiv = await locKyivModel.findByIdAndUpdate(id, req.body);
+    if (!locKyiv) {
+      res.status(400);
+      throw new Error("There is no location with this id");
+    }
+    res.status(200).json({
+      code: 200,
+      message: "Successful success",
+      data: locKyiv,
+    });
   };
-  updateDetail = (req, res) => {
-    res.send("updateDetail");
+
+  updateDetail = async (req, res) => {
+    const { id } = req.params;
+
+    const locKyiv = await locKyivModel.findByIdAndUpdate(id, req.body);
+    if (!locKyiv) {
+      res.status(400);
+      throw new Error("There is no location with this id");
+    }
+    res.status(200).json({
+      code: 200,
+      message: "Successful success",
+      data: locKyiv,
+    });
   };
-  remove = (req, res) => {
-    res.send("remove");
+
+  remove = async (req, res) => {
+    const { id } = req.params;
+    const locKyiv = await locKyivModel.findByIdAndDelete(id);
+    if (!locKyiv) {
+      res.status(400);
+      throw new Error("There is no location with this id");
+    }
+    res.status(200).json({
+      code: 200,
+      message: "Successful success",
+      data: locKyiv,
+    });
   };
 }
 

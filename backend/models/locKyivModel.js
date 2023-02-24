@@ -6,7 +6,7 @@ const schemaLocKyiv = Schema({
     required: [true, "DB: title is required"],
   },
   picture: Array,
-  coordinates: Number,
+  coordinates: Object,
   adress: String,
   fishes: {
     type: Array,
