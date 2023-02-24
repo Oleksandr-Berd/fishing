@@ -5,15 +5,16 @@ const schemaLocKyiv = Schema({
     type: String,
     required: [true, "DB: title is required"],
   },
-  picture: String,
+  picture: Array,
   coordinates: Number,
   adress: String,
   fishes: {
-    type: String,
+    type: Array,
     required: [true, "DB: there should be some fishes"],
   },
   fishing_conditions: String,
-  allowed_time: Number,
+  description: String,
+  allowed_time: String,
 });
 
 module.exports = model("locKyiv", schemaLocKyiv);

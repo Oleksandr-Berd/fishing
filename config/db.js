@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 async function connectDb() {
   try {
+    mongoose.set("strictQuery", false);
     const db = await mongoose.connect(process.env.DB_URI);
     console.log(
       `Successful success with DB, name: ${db.connection.name} on port: ${db.connection.port}, on host: ${db.connection.host}`
