@@ -1,5 +1,13 @@
 const express = require("express");
+const { engine } = require("express-handlebars");
 const app = express();
+
+app.engine("handlebars", engine());
+app.set("view engine", "handlebars");
+app.set("views", "backend/views");
+
+app.use(express.static("public"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const path = require("path");
@@ -17,6 +25,7 @@ const notFoundError = require("./middlewares/notFoundError");
 const errorHandler = require("./middlewares/errorHandler");
 const { usersModel } = require("./models/index");
 const auth = require("./middlewares/auth");
+const sendEmail = require("./services/sendEmail");
 require("colors");
 
 function generateToken(data) {
@@ -97,6 +106,31 @@ app.get(
     res.status(200).json({ message: "Logout successful" });
   })
 );
+
+app.get("/", (req, res) => {
+  res.render("home");
+});
+
+app.get("/about", (req, res) => {
+  res.render("about");
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact");
+});
+
+app.post("/send", async (req, res) => {
+  try {
+    await sendEmail(req.body);
+    res.render("send", {
+      msg: "success",
+      name: req.body.name,
+      email: req.body.email,
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
 
 app.use("/api", locKyivRouter);
 app.use("*", notFoundError);

@@ -1,4 +1,5 @@
-module.exports = (req, res, next) => {
-  res.status(404).send("not found");
-  next();
+module.exports = (req, res) => {
+  res.status(404);
+
+  res.render("notFound");
 };
