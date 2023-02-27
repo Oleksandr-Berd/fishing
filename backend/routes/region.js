@@ -7,22 +7,15 @@ const asyncHandler = require("express-async-handler");
 
 const regionRouter = express.Router();
 
-regionRouter.post(
-  "/region",
-  (req, res, next) => {
-    console.log("validation worked");
-    next();
-  },
-  regionController.add
-);
-regionRouter.get("/region", asyncHandler(regionController.getAll));
-regionRouter.get("/region/:id", asyncHandler(regionController.getOne));
-regionRouter.put("/region/:id", asyncHandler(regionController.update));
+regionRouter.post("/region", auth, regionController.add);
+regionRouter.get("/region", auth, asyncHandler(regionController.getAll));
+regionRouter.get("/region/:id", auth, asyncHandler(regionController.getOne));
+regionRouter.put("/region/:id", auth, asyncHandler(regionController.update));
 regionRouter.patch(
   "/region/:id",
   auth,
-  asyncHandler(regionController.updateDetail)
+  asyncHandler(regionController.auth, updateDetail)
 );
-regionRouter.delete("/region/:id", asyncHandler(regionController.remove));
+regionRouter.delete("/region/:id", auth, asyncHandler(regionController.remove));
 
 module.exports = regionRouter;
