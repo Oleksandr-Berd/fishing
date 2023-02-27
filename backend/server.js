@@ -18,7 +18,6 @@ const authRouter = require("./routes/authRouter");
 const notFoundError = require("./middlewares/notFoundError");
 const errorHandler = require("./middlewares/errorHandler");
 const { usersModel } = require("./models/index");
-const auth = require("./middlewares/auth");
 require("colors");
 
 function generateToken(data) {
@@ -26,30 +25,30 @@ function generateToken(data) {
   return (token = jwt.sign(dataObj, SECRET_KEY, { expiresIn: "24h" }));
 }
 
-app.post(
-  "/register",
-  asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    if (!email || !password) {
-      res.status(400);
-      throw new Error("Provide all required fields");
-    }
-    const candidate = await usersModel.findOne({ email });
+// app.post(
+//   "/register",
+//   asyncHandler(async (req, res) => {
+//     const { email, password } = req.body;
+//     if (!email || !password) {
+//       res.status(400);
+//       throw new Error("Provide all required fields");
+//     }
+//     const candidate = await usersModel.findOne({ email });
 
-    if (candidate) {
-      res.status(409);
-      throw new Error("This user already exists, please login");
-    }
-    const newUsers = new usersModel({ ...req.body });
-    newUsers.password = bcrypt.hashSync(password, 10);
-    const user = await newUsers.save();
-    if (!user) {
-      res.status(409);
-      throw new Error("Can't save user to the data base");
-    }
-    res.status(201).json({ code: 201, user, message: "Successful success" });
-  })
-);
+//     if (candidate) {
+//       res.status(409);
+//       throw new Error("This user already exists, please login");
+//     }
+//     const newUsers = new usersModel({ ...req.body });
+//     newUsers.password = bcrypt.hashSync(password, 10);
+//     const user = await newUsers.save();
+//     if (!user) {
+//       res.status(409);
+//       throw new Error("Can't save user to the data base");
+//     }
+//     res.status(201).json({ code: 201, user, message: "Successful success" });
+//   })
+// );
 
 app.post(
   "/login",
@@ -83,7 +82,7 @@ app.post(
   })
 );
 
-app.use("/", auth, asyncHandler(authRouter));
+app.use("/", asyncHandler(authRouter));
 
 app.use("/fishingLocs", locKyivRouter);
 

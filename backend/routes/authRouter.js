@@ -5,7 +5,7 @@ const asyncHandler = require("express-async-handler");
 
 const authRouter = express.Router();
 
-// locKyivRouter.post("/locKyiv", auth, locKyivController.add);
+authRouter.post("/register", asyncHandler(authController.register));
 // locKyivRouter.get("/locKyiv", auth, asyncHandler(locKyivController.getAll));
 // locKyivRouter.get("/locKyiv/:id", auth, asyncHandler(locKyivController.getOne));
 // locKyivRouter.put("/locKyiv/:id", auth, asyncHandler(locKyivController.update));

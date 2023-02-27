@@ -1,5 +1,6 @@
 const { usersModel } = require("../models/index");
 const { isValidObjectId } = require("mongoose");
+const bcrypt = require("bcrypt");
 
 class authController {
   //   add = async (req, res) => {
@@ -82,6 +83,28 @@ class authController {
   //       data: region,
   //     });
   //   };
+
+  register = async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.status(400);
+      throw new Error("Provide all required fields");
+    }
+    const candidate = await usersModel.findOne({ email });
+
+    if (candidate) {
+      res.status(409);
+      throw new Error("This user already exists, please login");
+    }
+    const newUsers = new usersModel({ ...req.body });
+    newUsers.password = bcrypt.hashSync(password, 10);
+    const user = await newUsers.save();
+    if (!user) {
+      res.status(409);
+      throw new Error("Can't save user to the data base");
+    }
+    res.status(201).json({ code: 201, user, message: "Successful success" });
+  };
 
   logout = async (req, res) => {
     const id = req.user;
