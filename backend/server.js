@@ -13,6 +13,7 @@ const { PORT } = process.env;
 const SECRET_KEY = "macho";
 const connectDb = require("../config/db");
 const locKyivRouter = require("./routes/locKyiv");
+const regionRouter = require("./routes/region");
 const notFoundError = require("./middlewares/notFoundError");
 const errorHandler = require("./middlewares/errorHandler");
 const { usersModel } = require("./models/index");
@@ -98,7 +99,10 @@ app.get(
   })
 );
 
-app.use("/api", locKyivRouter);
+app.use("/fishingLocs", locKyivRouter);
+
+app.use("/", regionRouter);
+
 app.use("*", notFoundError);
 app.use(errorHandler);
 
