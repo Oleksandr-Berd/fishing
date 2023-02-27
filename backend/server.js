@@ -14,6 +14,7 @@ const SECRET_KEY = "macho";
 const connectDb = require("../config/db");
 const locKyivRouter = require("./routes/locKyiv");
 const regionRouter = require("./routes/region");
+const authRouter = require("./routes/authRouter");
 const notFoundError = require("./middlewares/notFoundError");
 const errorHandler = require("./middlewares/errorHandler");
 const { usersModel } = require("./models/index");
@@ -22,7 +23,7 @@ require("colors");
 
 function generateToken(data) {
   const dataObj = { data };
-  return (token = jwt.sign(dataObj, SECRET_KEY, { expiresIn: "3h" }));
+  return (token = jwt.sign(dataObj, SECRET_KEY, { expiresIn: "24h" }));
 }
 
 app.post(
@@ -82,22 +83,7 @@ app.post(
   })
 );
 
-app.get(
-  "/logout",
-  asyncHandler(auth),
-  asyncHandler(async (req, res) => {
-    const id = req.user;
-    const user = await usersModel.findById(id);
-    console.log(id);
-    user.token = null;
-    const savedUser = await user.save();
-    if (!savedUser) {
-      res.status(400);
-      throw new Error("Something goes wrong");
-    }
-    res.status(200).json({ message: "Logout successful" });
-  })
-);
+app.use("/", auth, asyncHandler(authRouter));
 
 app.use("/fishingLocs", locKyivRouter);
 

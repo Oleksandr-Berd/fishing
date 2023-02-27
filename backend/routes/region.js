@@ -14,7 +14,7 @@ regionRouter.put("/region/:id", auth, asyncHandler(regionController.update));
 regionRouter.patch(
   "/region/:id",
   auth,
-  asyncHandler(regionController.auth, updateDetail)
+  asyncHandler(regionController.updateDetail)
 );
 regionRouter.delete("/region/:id", auth, asyncHandler(regionController.remove));
 
