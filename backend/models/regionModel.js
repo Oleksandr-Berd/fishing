@@ -5,6 +5,10 @@ const schemaRegion = Schema({
     type: String,
     required: [true, "DB: name is required"],
   },
+  path: {
+    type: String,
+    required: [true, "DB: path is required"],
+  },
 });
 
 module.exports = model("region", schemaRegion);

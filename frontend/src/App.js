@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<NavBar />}>
             <Route index element={<Navigate to="/home" />}></Route>
             <Route path="home" element={<Home />} />
-            <Route path="fishingLocs" element={<FishLocs />} />
+            <Route path="regions" element={<FishLocs />} />
             <Route path="fishes" element={<Fishes />} />
           </Route>
         </Routes>

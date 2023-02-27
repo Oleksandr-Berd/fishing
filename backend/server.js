@@ -19,7 +19,8 @@ const notFoundError = require("./middlewares/notFoundError");
 const errorHandler = require("./middlewares/errorHandler");
 const { usersModel } = require("./models/index");
 require("colors");
-
+let cors = require("cors");
+app.use(cors());
 function generateToken(data) {
   const dataObj = { data };
   return (token = jwt.sign(dataObj, SECRET_KEY, { expiresIn: "24h" }));

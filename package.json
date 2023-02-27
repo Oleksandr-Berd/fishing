@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/Oleksandr-Berd/fishing#readme",
   "dependencies": {
+    "axios": "^1.3.4",
     "bcrypt": "^5.1.0",
     "colors": "^1.4.0",
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",

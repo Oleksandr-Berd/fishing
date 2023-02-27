@@ -70,7 +70,6 @@ class regionController {
 
   updateDetail = async (req, res) => {
     const { id } = req.params;
-
     const region = await regionModel.findByIdAndUpdate(id, req.body);
     if (!region) {
       res.status(400);
