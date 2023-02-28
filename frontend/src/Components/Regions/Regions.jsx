@@ -1,15 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
+import * as SC from "./Regions.styled";
 
 export const Regions = ({ regions }) => {
   const location = useLocation();
-  console.log(regions);
   return (
-    <ul>
+    <SC.RegionListStyled>
       {regions.map(({ _id, name, path }) => (
         <Link key={_id} to={`/regions/${path}`} state={{ from: location }}>
-          {name}
+          <SC.RegionItemStyled>{name}</SC.RegionItemStyled>
         </Link>
       ))}
-    </ul>
+    </SC.RegionListStyled>
   );
 };

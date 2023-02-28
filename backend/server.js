@@ -28,7 +28,7 @@ function generateToken(data) {
 
 app.use("/", asyncHandler(authRouter));
 
-app.use("/regions", locKyivRouter);
+app.use("/region", locKyivRouter);
 
 app.use("/", regionRouter);
 
