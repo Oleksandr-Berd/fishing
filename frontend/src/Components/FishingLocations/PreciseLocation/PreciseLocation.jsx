@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { BackButton } from "../../../Utilities/Buttons/BackButton";
+import { ButtonContainer } from "../../../Utilities/Buttons/ButtonContainer";
+import { HomeButton } from "../../../Utilities/Buttons/HomeButton";
 import { getLocById } from "../../../Utilities/Regions/getRegions";
 
 export const PreciseLocation = () => {
@@ -9,5 +12,13 @@ export const PreciseLocation = () => {
   useEffect(() => {
     getLocById(_id, path).then(setLocation);
   }, [_id, path]);
-  return <p>Precise location{location !== null && location.title}</p>;
+  return (
+    <div>
+      <ButtonContainer>
+        <BackButton />
+        <HomeButton />
+      </ButtonContainer>
+      <p>Precise location{location !== null && location.title}</p>
+    </div>
+  );
 };

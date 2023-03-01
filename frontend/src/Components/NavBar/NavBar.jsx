@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 export const NavBar = () => {
   const navItem = [
     { href: "home", text: "Home" },
-    { href: "regions", text: "Fishing locations" },
+    { href: "region", text: "Fishing locations" },
     { href: "fishes", text: "Fishes" },
   ];
 

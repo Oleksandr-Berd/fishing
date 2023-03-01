@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
+import { BackButton } from "../../Utilities/Buttons/BackButton";
+import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
+import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 import { getFishingLocations } from "../../Utilities/Regions/getRegions";
-import * as SC from "../RegionList/RegionList.styled";
+import * as SC from "./FishingLocation.styled";
 
 export const FishingLocationsList = () => {
   const { path } = useParams();
   const [location, setLocation] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     getFishingLocations(path).then(setLocation);
@@ -14,35 +16,25 @@ export const FishingLocationsList = () => {
 
   return (
     <div>
-      <SC.ButtonsContainerStyled>
-        <SC.ButtonBackStyled
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          <span>Go back</span>
-        </SC.ButtonBackStyled>
-        <SC.ButtonHomeStyled>
-          <Link to="/">
-            <span style={{ textDecoration: "none" }}>Go home</span>
-          </Link>
-        </SC.ButtonHomeStyled>
-      </SC.ButtonsContainerStyled>
-      <ul>
+      <ButtonContainer>
+        <BackButton />
+        <HomeButton />
+      </ButtonContainer>
+      <SC.FishingLocationList>
         {location !== null &&
           location.map(({ title, adress, picture, fishes, _id }) => (
             <Link to={_id} id={_id}>
               <h1>{title}</h1>
               <p>{adress}</p>
               <img src={picture} alt={title} />
-              <ul>
+              <SC.LocationFishesList>
                 {fishes.map((el) => (
                   <li id={el}>{el}</li>
                 ))}
-              </ul>
+              </SC.LocationFishesList>
             </Link>
           ))}
-      </ul>
+      </SC.FishingLocationList>
       <Outlet />
     </div>
   );

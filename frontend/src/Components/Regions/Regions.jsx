@@ -6,7 +6,7 @@ export const Regions = ({ regions }) => {
   return (
     <SC.RegionListStyled>
       {regions.map(({ _id, name, path }) => (
-        <Link key={_id} to={`/regions/${path}`} state={{ from: location }}>
+        <Link key={_id} to={`/region/${path}`} state={{ from: location }}>
           <SC.RegionItemStyled>{name}</SC.RegionItemStyled>
         </Link>
       ))}

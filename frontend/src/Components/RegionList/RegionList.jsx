@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { Regions } from "../Regions/Regions";
-import { Outlet, useNavigate, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { getRegions } from "../../Utilities/Regions/getRegions";
 import * as SC from "./RegionList.styled.js";
+import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
+import { BackButton } from "../../Utilities/Buttons/BackButton";
+import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 
 export const RegionList = () => {
   const [regions, setRegions] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     getRegions().then(setRegions);
@@ -14,20 +16,10 @@ export const RegionList = () => {
 
   return (
     <SC.RegionListStyled>
-      <SC.ButtonsContainerStyled>
-        <SC.ButtonBackStyled
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          <span>Go back</span>
-        </SC.ButtonBackStyled>
-        <SC.ButtonHomeStyled>
-          <Link to="/">
-            <span style={{ textDecoration: "none" }}>Go home</span>
-          </Link>
-        </SC.ButtonHomeStyled>
-      </SC.ButtonsContainerStyled>
+      <ButtonContainer>
+        <BackButton />
+        <HomeButton />
+      </ButtonContainer>
       <Regions regions={regions} />
       <Outlet />
     </SC.RegionListStyled>

@@ -21,4 +21,5 @@ export const RegionItemStyled = styled.li`
 export const RegionListStyled = styled.ul`
   display: flex;
   flex-direction: column;
+  list-style-type: none;
 `;
