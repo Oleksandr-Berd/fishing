@@ -19,34 +19,25 @@ require("colors");
 let cors = require("cors");
 
 const multer = require("multer");
+const addNewDataRouter = require("./routes/addNewDataRouter");
 
 app.use(cors());
 
-const tempDir = path.join(__dirname, "temp");
-const commonPictureDir = path.join(__dirname, "public", "commonPictures");
+// const tempDir = path.join(__dirname, "temp");
+// const commonPictureDir = path.join(__dirname, "public", "commonPictures");
 
-const multerConfig = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, tempDir);
-  },
-  filename: (req, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
+// const multerConfig = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, tempDir);
+//   },
+//   filename: (req, file, cb) => {
+//     cb(null, file.originalname);
+//   },
+// });
 
-const upload = multer({ storage: multerConfig });
+// const upload = multer({ storage: multerConfig });
 
-app.post("/newData", upload.single("image"), async (req, res) => {
-  const { path: tempUpload, originalname } = req.file;
-  const resultUpload = path.join(commonPictureDir, originalname);
-
-  try {
-    await fs.rename(tempUpload, resultUpload);
-    res.status(200).json({ message: "Successful success" });
-  } catch (error) {
-    await fs.unlink(tempUpload);
-  }
-});
+app.use("/", addNewDataRouter);
 
 app.use("/", asyncHandler(authRouter));
 
