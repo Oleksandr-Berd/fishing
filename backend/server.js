@@ -36,13 +36,16 @@ const multerConfig = multer.diskStorage({
 
 const upload = multer({ storage: multerConfig });
 
-const commonPictures = [];
-
 app.post("/newData", upload.single("image"), async (req, res) => {
-  const { path: pathUpload, originalname } = req.file;
+  const { path: tempUpload, originalname } = req.file;
   const resultUpload = path.join(commonPictureDir, originalname);
-  await fs.rename(pathUpload, resultUpload);
-  res.status(200).json({ message: "Successful success" });
+
+  try {
+    await fs.rename(tempUpload, resultUpload);
+    res.status(200).json({ message: "Successful success" });
+  } catch (error) {
+    await fs.unlink(tempUpload);
+  }
 });
 
 app.use("/", asyncHandler(authRouter));
