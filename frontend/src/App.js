@@ -9,6 +9,7 @@ import { RegionList } from "./Components/RegionList/RegionList";
 import { FishingLocationsList } from "./Components/FishingLocations/FishinglocationsList";
 import { Footer } from "./Components/Footer/Footer";
 import { PreciseLocation } from "./Components/FishingLocations/PreciseLocation/PreciseLocation";
+import { NewData } from "./Components/NewData/NewData";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="region" element={<RegionList />} />
         <Route path="region/:path" element={<FishingLocationsList />} />
         <Route path="region/:path/:_id" element={<PreciseLocation />} />
+        <Route path="newData" element={<NewData />} />
         <Route path="fishes" element={<Fishes />} />
       </Routes>
       <Footer></Footer>

@@ -5,6 +5,7 @@ import { Outlet } from "react-router-dom";
 export const NavBar = () => {
   const navItem = [
     { href: "home", text: "Home" },
+    { href: "newData", text: "Add your own data" },
     { href: "region", text: "Fishing locations" },
     { href: "fishes", text: "Fishes" },
   ];
