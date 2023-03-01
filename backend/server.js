@@ -3,28 +3,47 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const path = require("path");
+const fs = require("fs/promises");
 const pathToEnv = path.join(__dirname, "..", "config", ".env");
 const dotenv = require("dotenv");
 const asyncHandler = require("express-async-handler");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 dotenv.config({ path: pathToEnv });
 const { PORT } = process.env;
-const SECRET_KEY = "macho";
 const connectDb = require("../config/db");
 const locKyivRouter = require("./routes/locKyiv");
 const regionRouter = require("./routes/region");
 const authRouter = require("./routes/authRouter");
 const notFoundError = require("./middlewares/notFoundError");
 const errorHandler = require("./middlewares/errorHandler");
-const { usersModel } = require("./models/index");
 require("colors");
 let cors = require("cors");
+
+const multer = require("multer");
+
 app.use(cors());
-function generateToken(data) {
-  const dataObj = { data };
-  return (token = jwt.sign(dataObj, SECRET_KEY, { expiresIn: "24h" }));
-}
+
+const tempDir = path.join(__dirname, "temp");
+const commonPictureDir = path.join(__dirname, "public", "commonPictures");
+
+const multerConfig = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, tempDir);
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: multerConfig });
+
+const commonPictures = [];
+
+app.post("/newData", upload.single("image"), async (req, res) => {
+  const { path: pathUpload, originalname } = req.file;
+  const resultUpload = path.join(commonPictureDir, originalname);
+  await fs.rename(pathUpload, resultUpload);
+  res.status(200).json({ message: "Successful success" });
+});
 
 app.use("/", asyncHandler(authRouter));
 
