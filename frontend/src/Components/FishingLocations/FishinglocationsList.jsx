@@ -5,6 +5,7 @@ import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 import { getFishingLocations } from "../../Utilities/Regions/getRegions";
 import * as SC from "./FishingLocation.styled";
+import { URL } from "../../Utilities/Regions/URL";
 
 export const FishingLocationsList = () => {
   const { path } = useParams();
@@ -23,13 +24,13 @@ export const FishingLocationsList = () => {
       <SC.FishingLocationList>
         {location !== null &&
           location.map(({ title, adress, picture, fishes, _id }) => (
-            <Link to={_id} id={_id}>
+            <Link to={_id} key={_id}>
               <h1>{title}</h1>
               <p>{adress}</p>
-              <img src={picture[0]} alt={title} />
+              <img src={`${URL}/${picture[0]}`} alt={title} />
               <SC.LocationFishesList>
                 {fishes.map((el) => (
-                  <li id={el}>{el}</li>
+                  <li key={el}>{el}</li>
                 ))}
               </SC.LocationFishesList>
             </Link>
