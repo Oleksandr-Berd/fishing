@@ -37,6 +37,8 @@ app.use(cors());
 
 // const upload = multer({ storage: multerConfig });
 
+app.use(express.static("public"));
+
 app.use("/", addNewDataRouterKyiv);
 
 app.use("/", asyncHandler(authRouter));
