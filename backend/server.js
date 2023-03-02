@@ -19,25 +19,14 @@ require("colors");
 let cors = require("cors");
 
 const multer = require("multer");
-const { addNewDataRouterKyiv } = require("./routes/addNewDataRouter");
+const addNewDataRouterKyiv = require("./routes/addNewDataRouter");
 
 app.use(cors());
 
-// const tempDir = path.join(__dirname, "temp");
-// const commonPictureDir = path.join(__dirname, "public", "commonPictures");
-
-// const multerConfig = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, tempDir);
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, file.originalname);
-//   },
-// });
-
-// const upload = multer({ storage: multerConfig });
-
-app.use(express.static("public"));
+app.use(
+  "/public/kyivLocPictures",
+  express.static(path.join(__dirname, "/public/kyivLocPictures/"))
+);
 
 app.use("/", addNewDataRouterKyiv);
 

@@ -13,7 +13,6 @@ class addNewDataController {
     const resultUpload = path.join(KyivPictureDir, originalname);
     const image = path.join("kyivLocPictures", originalname);
     try {
-      console.log(image);
       await fs.rename(tempUpload, resultUpload);
       const newPicture = {
         name: req.body.name,
@@ -21,6 +20,7 @@ class addNewDataController {
         image,
       };
       picturesKyiv.push(newPicture.image);
+      console.log(picturesKyiv);
       res.status(201).json({ message: "Successful success" });
     } catch (error) {
       await fs.unlink(tempUpload);
@@ -29,7 +29,7 @@ class addNewDataController {
   };
   updateKyivData = async (req, res) => {
     const { id } = req.params;
-
+    console.log(picturesKyiv);
     const locKyiv = await locKyivModel.findByIdAndUpdate(id, {
       picture: picturesKyiv,
     });

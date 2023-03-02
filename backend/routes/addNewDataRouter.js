@@ -15,4 +15,4 @@ addNewDataRouterKyiv.patch(
   addNewDataController.updateKyivData
 );
 
-module.exports = { addNewDataRouterKyiv };
+module.exports = addNewDataRouterKyiv;
