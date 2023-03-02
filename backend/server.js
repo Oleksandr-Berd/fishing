@@ -19,7 +19,7 @@ require("colors");
 let cors = require("cors");
 
 const multer = require("multer");
-const addNewDataRouter = require("./routes/addNewDataRouter");
+const addNewDataRouterKyiv = require("./routes/addNewDataRouter");
 
 app.use(cors());
 
@@ -37,7 +37,7 @@ app.use(cors());
 
 // const upload = multer({ storage: multerConfig });
 
-app.use("/", addNewDataRouter);
+app.use("/", addNewDataRouterKyiv);
 
 app.use("/", asyncHandler(authRouter));
 

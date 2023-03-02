@@ -2,12 +2,12 @@ const express = require("express");
 const upload = require("../middlewares/addNewData");
 const addNewDataController = require("../controllers/addNewDataController");
 
-const addNewDataRouter = express.Router();
+const addNewDataRouterKyiv = express.Router();
 
-addNewDataRouter.post(
-  "/newData/common",
+addNewDataRouterKyiv.post(
+  "/newData/locKyiv",
   upload.single("image"),
-  addNewDataController.addCommonData
+  addNewDataController.addKyivData
 );
 
-module.exports = addNewDataRouter;
+module.exports = addNewDataRouterKyiv;
