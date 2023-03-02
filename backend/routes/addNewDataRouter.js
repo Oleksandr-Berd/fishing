@@ -10,4 +10,9 @@ addNewDataRouterKyiv.post(
   addNewDataController.addKyivData
 );
 
-module.exports = addNewDataRouterKyiv;
+addNewDataRouterKyiv.patch(
+  "/newData/locKyiv/:id",
+  addNewDataController.updateKyivData
+);
+
+module.exports = { addNewDataRouterKyiv };

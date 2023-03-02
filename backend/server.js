@@ -19,7 +19,7 @@ require("colors");
 let cors = require("cors");
 
 const multer = require("multer");
-const addNewDataRouterKyiv = require("./routes/addNewDataRouter");
+const { addNewDataRouterKyiv } = require("./routes/addNewDataRouter");
 
 app.use(cors());
 

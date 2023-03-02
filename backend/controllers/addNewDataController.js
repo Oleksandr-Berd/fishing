@@ -1,10 +1,11 @@
 const path = require("path");
 const fs = require("fs/promises");
 const { v4 } = require("uuid");
+const locKyivModel = require("../models/locKyivModel");
 
 const KyivPictureDir = path.join(__dirname, "..", "public", "kyivLocPictures");
 
-const picturesKyiv = [];
+let picturesKyiv = [];
 
 class addNewDataController {
   addKyivData = async (req, res) => {
@@ -18,14 +19,30 @@ class addNewDataController {
         id: v4(),
         image,
       };
-      picturesKyiv.push(newPicture);
+      picturesKyiv.push(newPicture.image);
       res.status(201).json({ message: "Successful success" });
     } catch (error) {
       await fs.unlink(tempUpload);
       console.log(error.message);
     }
   };
-  updateKyivData = async (req, res) => {};
+  updateKyivData = async (req, res) => {
+    const { id } = req.params;
+
+    const locKyiv = await locKyivModel.findByIdAndUpdate(id, {
+      picture: picturesKyiv,
+    });
+    if (!locKyiv) {
+      res.status(400);
+      throw new Error("There is no location with this id");
+    }
+
+    res.status(200).json({
+      code: 200,
+      message: "Successful success",
+      data: locKyiv,
+    });
+  };
 }
 
 module.exports = new addNewDataController();
