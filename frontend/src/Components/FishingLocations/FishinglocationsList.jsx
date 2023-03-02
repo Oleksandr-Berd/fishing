@@ -26,7 +26,7 @@ export const FishingLocationsList = () => {
             <Link to={_id} id={_id}>
               <h1>{title}</h1>
               <p>{adress}</p>
-              <img src={picture} alt={title} />
+              <img src={picture[0]} alt={title} />
               <SC.LocationFishesList>
                 {fishes.map((el) => (
                   <li id={el}>{el}</li>

@@ -6,6 +6,7 @@ import * as SC from "./RegionList.styled.js";
 import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { BackButton } from "../../Utilities/Buttons/BackButton";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
+import { backgroundImageOne } from "../../Utilities/Common/images";
 
 export const RegionList = () => {
   const [regions, setRegions] = useState([]);
@@ -15,7 +16,7 @@ export const RegionList = () => {
   }, []);
 
   return (
-    <SC.RegionListStyled>
+    <SC.RegionListStyled imgUrl={backgroundImageOne}>
       <ButtonContainer>
         <BackButton />
         <HomeButton />

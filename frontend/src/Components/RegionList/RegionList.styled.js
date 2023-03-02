@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const RegionListStyled = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f0ffff;
+  background: ${(props) => `url(${props.imgUrl})`};
 `;
 
 export const ButtonBackStyled = styled.button`
