@@ -4,8 +4,8 @@ import { BackButton } from "../../Utilities/Buttons/BackButton";
 import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 import { getFishingLocations } from "../../Utilities/Regions/getRegions";
+import { BaseUrlPicture } from "../../Utilities/Regions/URL";
 import * as SC from "./FishingLocation.styled";
-import { URL } from "../../Utilities/Regions/URL";
 
 export const FishingLocationsList = () => {
   const { path } = useParams();
@@ -21,25 +21,34 @@ export const FishingLocationsList = () => {
         <BackButton />
         <HomeButton />
       </ButtonContainer>
-      <SC.FishingLocationList>
-        {location !== null &&
-          location.map(({ title, adress, picture, fishes, _id }) => (
-            <Link to={_id} key={_id}>
-              <h1>{title}</h1>
-              <p>{adress}</p>
-              <img
-                src={`http://localhost:5001/public/${picture[0]}`}
-                alt={title}
-              />
-              <SC.LocationFishesList>
-                {fishes.map((el) => (
-                  <li key={el}>{el}</li>
-                ))}
-              </SC.LocationFishesList>
-            </Link>
-          ))}
-      </SC.FishingLocationList>
-      <Outlet />
+      <SC.ContainerFishingLocation>
+        <SC.FishingLocationList>
+          {location !== null &&
+            location.map(({ title, adress, picture, fishes, _id }) => (
+              <SC.ContainerFishingLocationCard key={_id}>
+                <Link to={_id} key={_id}>
+                  <SC.TitleFishingLocationList>
+                    {title}
+                  </SC.TitleFishingLocationList>
+                </Link>
+                <p style={{ color: "black" }}>{adress}</p>
+                <img
+                  src={`${BaseUrlPicture}/${picture[0]}`}
+                  alt={title}
+                  width={270}
+                />
+                <SC.LocationFishesList>
+                  {fishes.map((el) => (
+                    <SC.ItemFishesListStyled key={el}>
+                      {el}
+                    </SC.ItemFishesListStyled>
+                  ))}
+                </SC.LocationFishesList>
+              </SC.ContainerFishingLocationCard>
+            ))}
+        </SC.FishingLocationList>
+        <Outlet />
+      </SC.ContainerFishingLocation>
     </div>
   );
 };
