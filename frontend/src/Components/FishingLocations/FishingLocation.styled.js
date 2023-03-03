@@ -44,3 +44,49 @@ export const TitleFishingLocationList = styled.h1`
   font-weight: bold;
   padding: 15px;
 `;
+
+export const ContainerPicturesPreciseLocation = styled.div`
+  display: inline-block;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const ContainerPreciseLocation = styled.div`
+  display: inline-block;
+`;
+
+export const ListPicturesPreciseLocation = styled.ul`
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+`;
+
+export const ItemPicturePreciseLocation = styled.li`
+  margin-right: 15px;
+`;
+
+export const ListFishPreciseLocation = styled.ul`
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+`;
+
+export const ItemFishPreciseLocation = styled.li`
+  margin-right: 15px;
+`;
+
+export const ContainerTextPreciseLocation = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: last baseline;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  margin-right: 25px;
+`;
+
+export const ContainerMapPreciseLocation = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  padding: 24px 0;
+`;
