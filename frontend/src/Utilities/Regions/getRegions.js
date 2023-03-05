@@ -21,3 +21,17 @@ export const getLocById = (_id, path) => {
     .then((response) => response.data.data)
     .catch((err) => console.log(err));
 };
+
+export const postNewData = (title, description) => {
+  return axios
+    .post("/user", {
+      firstName: "Fred",
+      lastName: "Flintstone",
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};

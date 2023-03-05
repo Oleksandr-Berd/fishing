@@ -10,8 +10,16 @@ import { FishingLocationsList } from "./Components/FishingLocations/Fishinglocat
 import { Footer } from "./Components/Footer/Footer";
 import { PreciseLocation } from "./Components/FishingLocations/PreciseLocation/PreciseLocation";
 import { NewData } from "./Components/NewData/NewData";
+import { useState } from "react";
 
 function App() {
+  const [body, setBody] = useState({});
+
+  const handleFormSubmitAddData = (body) => {
+    setBody(body);
+    console.log(body);
+  };
+
   return (
     <div className="App">
       <Header>
@@ -25,7 +33,10 @@ function App() {
         <Route path="region" element={<RegionList />} />
         <Route path="region/:path" element={<FishingLocationsList />} />
         <Route path="region/:path/:_id" element={<PreciseLocation />} />
-        <Route path="newData" element={<NewData />} />
+        <Route
+          path="newData"
+          element={<NewData submit={handleFormSubmitAddData} />}
+        />
         <Route path="fishes" element={<Fishes />} />
       </Routes>
       <Footer></Footer>
