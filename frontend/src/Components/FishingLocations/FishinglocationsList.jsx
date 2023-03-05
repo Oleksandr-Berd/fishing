@@ -11,7 +11,6 @@ import * as SC from "./FishingLocation.styled";
 export const FishingLocationsList = () => {
   const { locPath } = useParams();
   const [location, setLocation] = useState(null);
-  const [image, setImage] = useState("");
 
   useEffect(() => {
     getFishingLocations(locPath).then(setLocation);
@@ -20,9 +19,9 @@ export const FishingLocationsList = () => {
   const submitImage = (evt) => {
     evt.preventDefault();
     const data = new FormData();
-    data.append("image", image[0]);
+    data.append("image", evt.target.image.files[0]);
     console.log(data);
-    // postNewImage(data, locPath);
+    postNewImage(data, locPath);
   };
   return (
     <div>
@@ -30,12 +29,8 @@ export const FishingLocationsList = () => {
         <BackButton />
         <HomeButton />
       </ButtonContainer>
-      <form encType="multipart/form-data" onSubmit={submitImage}>
-        <input
-          type="file"
-          name="image"
-          onChange={(evt) => setImage(evt.target.files)}
-        />
+      <form onSubmit={submitImage}>
+        <input type="file" name="image" />
         <button type="submit">Attach the image</button>
       </form>
       <SC.ContainerFishingLocation>

@@ -55,9 +55,7 @@ export const postNewData = async (
 
 export const postNewImage = async (data, locPath) => {
   return await axios
-    .post(`${patchImageUrl}/${locPath}`, {
-      data,
-    })
+    .post(`${patchImageUrl}/${locPath}`, data)
     .then(function (response) {
       console.log(response);
     })
