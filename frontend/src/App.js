@@ -10,15 +10,24 @@ import { FishingLocationsList } from "./Components/FishingLocations/Fishinglocat
 import { Footer } from "./Components/Footer/Footer";
 import { PreciseLocation } from "./Components/FishingLocations/PreciseLocation/PreciseLocation";
 import { NewData } from "./Components/NewData/NewData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { postNewData } from "./Utilities/Regions/helpers";
 
 function App() {
-  const [body, setBody] = useState({});
+  const [finalBody, setFinalBody] = useState({});
+  const [finalPath, setFinalPath] = useState("");
 
-  const handleFormSubmitAddData = (body) => {
-    setBody(body);
-    console.log(body);
+  const handleFormSubmitAddData = (body, path) => {
+    setFinalBody(body);
+    setFinalPath(path);
   };
+
+  useEffect(() => {
+    if (!finalBody || !finalPath) {
+      return;
+    }
+    postNewData(finalBody, finalPath);
+  }, [finalBody, finalPath]);
 
   return (
     <div className="App">

@@ -1,5 +1,7 @@
 import { useState } from "react";
-const _debounce = require("lodash");
+import { BackButton } from "../../Utilities/Buttons/BackButton";
+import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
+import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 
 export const NewData = ({ submit }) => {
   const [title, setTitle] = useState("");
@@ -12,6 +14,7 @@ export const NewData = ({ submit }) => {
   const [fishingConditions, setFishingConditions] = useState("");
   const [description, setDescription] = useState("");
   const [allowedTime, setAllowedTime] = useState("");
+  const [path, setPath] = useState("");
 
   const submitHandler = (evt) => {
     evt.preventDefault();
@@ -19,18 +22,25 @@ export const NewData = ({ submit }) => {
     setFishes([...fishes, fish.split(",")]);
 
     setCoordinates({ longitude, latitude });
-    submit({
-      title,
-      coordinates,
-      adress,
-      fishes,
-      fishingConditions,
-      description,
-      allowedTime,
-    });
+    submit(
+      {
+        title,
+        coordinates,
+        adress,
+        fishes,
+        fishingConditions,
+        description,
+        allowedTime,
+      },
+      path
+    );
   };
   return (
     <div>
+      <ButtonContainer>
+        <BackButton />
+        <HomeButton />
+      </ButtonContainer>
       <form
         method="post"
         id="form"
@@ -38,7 +48,20 @@ export const NewData = ({ submit }) => {
         onSubmit={submitHandler}
       >
         {/* <input type="file" name="image" multiple /> */}
-
+        <label htmlFor="fav">Choose your region</label>
+        <input
+          list="regions"
+          name="region"
+          id="region"
+          onChange={(evt) => setPath(evt.currentTarget.value)}
+        />
+        <datalist id="regions">
+          <option value="locKyiv">Kyiv region</option>
+          <option>Odesa region</option>
+          <option>Dnipro region</option>
+          <option>Chernihiv region</option>
+          <option>Kharkiv region</option>
+        </datalist>
         <input
           type="text"
           name="title"
@@ -46,17 +69,7 @@ export const NewData = ({ submit }) => {
             setTitle(evt.currentTarget.value);
           }}
           value={title}
-          required
-        />
-        <input
-          type="number"
-          name="longitude"
-          onChange={(evt) => {
-            setLongitude(evt.currentTarget.value);
-          }}
-          value={longitude}
-          placeholder="please enter the longitude"
-          required
+          placeholder="please enter the title"
         />
         <input
           type="number"
@@ -66,7 +79,15 @@ export const NewData = ({ submit }) => {
           }}
           value={latitude}
           placeholder="please enter the latitude"
-          required
+        />
+        <input
+          type="number"
+          name="longitude"
+          onChange={(evt) => {
+            setLongitude(evt.currentTarget.value);
+          }}
+          value={longitude}
+          placeholder="please enter the longitude"
         />
         <input
           type="text"
@@ -75,7 +96,7 @@ export const NewData = ({ submit }) => {
             setAdress(evt.currentTarget.value);
           }}
           value={adress}
-          required
+          placeholder="please enter the adress"
         />
         <input
           type="text"
@@ -85,7 +106,6 @@ export const NewData = ({ submit }) => {
           }}
           value={fish}
           placeholder="e.g., fish"
-          required
         />
         <input
           type="text"
@@ -94,7 +114,7 @@ export const NewData = ({ submit }) => {
             setFishingConditions(evt.currentTarget.value);
           }}
           value={fishingConditions}
-          required
+          placeholder="please enter the fishingConditions"
         />
         <input
           type="text"
@@ -103,7 +123,7 @@ export const NewData = ({ submit }) => {
             setDescription(evt.currentTarget.value);
           }}
           value={description}
-          required
+          placeholder="please enter the description"
         />
         <input
           type="text"
@@ -112,7 +132,7 @@ export const NewData = ({ submit }) => {
             setAllowedTime(evt.currentTarget.value);
           }}
           value={allowedTime}
-          required
+          placeholder="please enter the allowedTime"
         />
         <button type="submit">Submit</button>
       </form>

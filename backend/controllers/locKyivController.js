@@ -3,7 +3,15 @@ const { isValidObjectId } = require("mongoose");
 
 class LocKyivController {
   add = async (req, res) => {
-    const { title, fishes } = req.body;
+    const {
+      title,
+      // coordinates,
+      // adress,
+      fishes,
+      // fishing_conditions,
+      // description,
+      // allowed_time,
+    } = req.body;
 
     if (!title || !fishes) {
       res.status(400);

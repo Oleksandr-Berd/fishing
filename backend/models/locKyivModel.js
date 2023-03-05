@@ -12,9 +12,9 @@ const schemaLocKyiv = Schema({
     type: Array,
     required: [true, "DB: there should be some fishes"],
   },
-  fishing_conditions: String,
+  fishingConditions: String,
   description: String,
-  allowed_time: String,
+  allowedTime: String,
 });
 
 module.exports = model("locKyiv", schemaLocKyiv);

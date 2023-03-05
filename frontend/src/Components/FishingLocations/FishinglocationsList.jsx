@@ -3,7 +3,7 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { BackButton } from "../../Utilities/Buttons/BackButton";
 import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
-import { getFishingLocations } from "../../Utilities/Regions/getRegions";
+import { getFishingLocations } from "../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../Utilities/Regions/URL";
 import * as SC from "./FishingLocation.styled";
 
