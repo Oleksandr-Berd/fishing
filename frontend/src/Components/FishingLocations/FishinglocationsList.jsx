@@ -5,22 +5,39 @@ import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 import { getFishingLocations } from "../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../Utilities/Regions/URL";
+import { postNewImage } from "../../Utilities/Regions/helpers";
 import * as SC from "./FishingLocation.styled";
 
 export const FishingLocationsList = () => {
-  const { path } = useParams();
+  const { locPath } = useParams();
   const [location, setLocation] = useState(null);
+  const [image, setImage] = useState("");
 
   useEffect(() => {
-    getFishingLocations(path).then(setLocation);
-  }, [path]);
+    getFishingLocations(locPath).then(setLocation);
+  }, [locPath]);
 
+  const submitImage = (evt) => {
+    evt.preventDefault();
+    const data = new FormData();
+    data.append("image", image[0]);
+    console.log(data);
+    // postNewImage(data, locPath);
+  };
   return (
     <div>
       <ButtonContainer>
         <BackButton />
         <HomeButton />
       </ButtonContainer>
+      <form encType="multipart/form-data" onSubmit={submitImage}>
+        <input
+          type="file"
+          name="image"
+          onChange={(evt) => setImage(evt.target.files)}
+        />
+        <button type="submit">Attach the image</button>
+      </form>
       <SC.ContainerFishingLocation>
         <SC.FishingLocationList>
           {location !== null &&

@@ -12,7 +12,7 @@ export const NewData = ({ submit }) => {
   const [fishingConditions, setFishingConditions] = useState("");
   const [description, setDescription] = useState("");
   const [allowedTime, setAllowedTime] = useState("");
-  const [path, setPath] = useState("");
+  const [locPath, setLocaPath] = useState("");
   const coordinates = { latitude, longitude };
   const submitHandler = (evt) => {
     evt.preventDefault();
@@ -26,9 +26,10 @@ export const NewData = ({ submit }) => {
         description,
         allowedTime,
       },
-      path
+      locPath
     );
   };
+
   return (
     <div>
       <ButtonContainer>
@@ -41,7 +42,6 @@ export const NewData = ({ submit }) => {
         encType="multipart/form-data"
         onSubmit={submitHandler}
       >
-        {/* <input type="file" name="image" multiple /> */}
         <SC.LabelAddNewData htmlFor="region">
           Choose your region
         </SC.LabelAddNewData>
@@ -50,7 +50,7 @@ export const NewData = ({ submit }) => {
           name="region"
           id="region"
           onChange={(evt) => {
-            setPath(evt.currentTarget.value);
+            setLocaPath(evt.currentTarget.value);
           }}
         />
         <datalist id="regions">

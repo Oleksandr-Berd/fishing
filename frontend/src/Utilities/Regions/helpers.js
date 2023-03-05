@@ -1,5 +1,6 @@
 import axios from "axios";
 import { URL } from "./URL";
+import { patchImageUrl } from "./URL";
 
 export const getRegions = async () => {
   return await axios
@@ -8,16 +9,16 @@ export const getRegions = async () => {
     .catch((err) => console.log(err));
 };
 
-export const getFishingLocations = async (path) => {
+export const getFishingLocations = async (locPath) => {
   return await axios
-    .get(`${URL}/${path}`)
+    .get(`${URL}/${locPath}`)
     .then((response) => response.data.data)
     .catch((err) => console.log(err));
 };
 
-export const getLocById = async (_id, path) => {
+export const getLocById = async (_id, locPath) => {
   return await axios
-    .get(`${URL}/${path}/${_id}`)
+    .get(`${URL}/${locPath}/${_id}`)
     .then((response) => response.data.data)
     .catch((err) => console.log(err));
 };
@@ -32,10 +33,10 @@ export const postNewData = async (
     description,
     allowedTime,
   },
-  path
+  locPath
 ) => {
   return await axios
-    .post(`${URL}/${path}`, {
+    .post(`${URL}/${locPath}`, {
       title,
       coordinates,
       adress,
@@ -43,6 +44,32 @@ export const postNewData = async (
       fishingConditions,
       description,
       allowedTime,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const postNewImage = async (data, locPath) => {
+  return await axios
+    .post(`${patchImageUrl}/${locPath}`, {
+      data,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+
+export const patchNewImage = async ({ image }, locPath, _id) => {
+  return await axios
+    .patch(`${patchImageUrl}/${locPath}/${_id}`, {
+      image,
     })
     .then(function (response) {
       console.log(response);

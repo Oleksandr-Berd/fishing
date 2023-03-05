@@ -17,9 +17,9 @@ function App() {
   const [finalBody, setFinalBody] = useState({});
   const [finalPath, setFinalPath] = useState("");
 
-  const handleFormSubmitAddData = (body, path) => {
+  const handleFormSubmitAddData = (body, locPath) => {
     setFinalBody(body);
-    setFinalPath(path);
+    setFinalPath(locPath);
   };
 
   useEffect(() => {
@@ -40,8 +40,8 @@ function App() {
           <Route path="home" element={<Home />} />
         </Route>
         <Route path="region" element={<RegionList />} />
-        <Route path="region/:path" element={<FishingLocationsList />} />
-        <Route path="region/:path/:_id" element={<PreciseLocation />} />
+        <Route path="region/:locPath" element={<FishingLocationsList />} />
+        <Route path="region/:locPath/:_id" element={<PreciseLocation />} />
         <Route
           path="newData"
           element={<NewData submit={handleFormSubmitAddData} />}
