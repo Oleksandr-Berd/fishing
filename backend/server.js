@@ -21,7 +21,7 @@ let cors = require("cors");
 const multer = require("multer");
 const addNewDataRouterKyiv = require("./routes/addNewDataRouter");
 
-app.use(cors());
+app.use(cors({ origin: true }));
 
 app.use(
   "/public/kyivLocPictures",

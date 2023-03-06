@@ -6,6 +6,7 @@ import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 import { getFishingLocations } from "../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../Utilities/Regions/URL";
 import { postNewImage } from "../../Utilities/Regions/helpers";
+import { toast } from "react-toastify";
 import * as SC from "./FishingLocation.styled";
 
 export const FishingLocationsList = () => {
@@ -22,6 +23,7 @@ export const FishingLocationsList = () => {
     data.append("image", evt.target.image.files[0]);
     console.log(data);
     postNewImage(data, locPath);
+    return toast.success("The image is added");
   };
   return (
     <div>

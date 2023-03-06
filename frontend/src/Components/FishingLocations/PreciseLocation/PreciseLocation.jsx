@@ -5,22 +5,24 @@ import { ButtonContainer } from "../../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../../Utilities/Buttons/HomeButton";
 import { getLocById } from "../../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../../Utilities/Regions/URL";
-import { patchNewImage } from "../../../Utilities/Regions/helpers";
+// import { patchNewImage } from "../../../Utilities/Regions/helpers";
 import * as SC from "../FishingLocation.styled";
 
 export const PreciseLocation = () => {
   const { _id, locPath } = useParams();
   const [location, setLocation] = useState("");
-  const [image, setImage] = useState("");
+  // const [image, setImage] = useState("");
 
   useEffect(() => {
     getLocById(_id, locPath).then(setLocation);
   }, [_id, locPath]);
 
-  const submitImage = (evt) => {
-    evt.preventDefault();
-    patchNewImage({ image }, locPath, _id);
-  };
+  // const submitPatchImage = (evt) => {
+  //   evt.preventDefault();
+  //   const data = new FormData();
+  //   data.append("image", evt.target.image.files[0]);
+  //   patchNewImage(evt.target.image.files[0], locPath, _id);
+  // };
 
   const {
     title,
@@ -28,8 +30,8 @@ export const PreciseLocation = () => {
     fishes,
     description,
     coordinates,
-    allowed_time,
-    fishing_conditions,
+    allowedTime,
+    fishingConditions,
     picture,
   } = location;
 
@@ -44,8 +46,8 @@ export const PreciseLocation = () => {
           <h1>{location !== null && title}</h1>
           <p>Adress: {adress}</p>
           <p>{description}</p>
-          <p>Fishing conditions: {fishing_conditions}</p>
-          <p>Allowed time for fishing: {allowed_time}</p>
+          <p>Fishing conditions: {fishingConditions}</p>
+          <p>Allowed time for fishing: {allowedTime}</p>
           <SC.ListFishPreciseLocation>
             <span>Type of fish:</span>
             {fishes &&
@@ -69,14 +71,10 @@ export const PreciseLocation = () => {
       </SC.ContainerMapPreciseLocation>
       <SC.ContainerPicturesPreciseLocation>
         <SC.ListPicturesPreciseLocation>
-          <form encType="multipart/form-data" onSubmit={submitImage}>
-            <input
-              type="file"
-              name="image"
-              onChange={(evt) => setImage(evt.currentTarget.value)}
-            />
+          {/* <form onSubmit={submitPatchImage}>
+            <input type="file" name="image" />
             <button type="submit">Attach the image</button>
-          </form>
+          </form> */}
           {picture &&
             picture.map((el) => (
               <SC.ItemPicturePreciseLocation key={el}>

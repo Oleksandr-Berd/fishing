@@ -28,7 +28,6 @@ class addNewDataController {
   };
   updateKyivData = async (req, res) => {
     const { id } = req.params;
-    console.log(picturesKyiv);
     const locKyiv = await locKyivModel.findByIdAndUpdate(id, {
       picture: picturesKyiv,
     });

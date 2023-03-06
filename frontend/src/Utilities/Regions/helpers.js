@@ -64,11 +64,9 @@ export const postNewImage = async (data, locPath) => {
     });
 };
 
-export const patchNewImage = async ({ image }, locPath, _id) => {
+export const patchNewImage = async (data, locPath, _id) => {
   return await axios
-    .patch(`${patchImageUrl}/${locPath}/${_id}`, {
-      image,
-    })
+    .patch(`${patchImageUrl}/${locPath}/${_id}`, data)
     .then(function (response) {
       console.log(response);
     })

@@ -3,6 +3,7 @@ import { BackButton } from "../../Utilities/Buttons/BackButton";
 import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 import * as SC from "./NewData.styled";
+import { toast } from "react-toastify";
 
 export const NewData = ({ submit }) => {
   const [title, setTitle] = useState("");
@@ -12,6 +13,7 @@ export const NewData = ({ submit }) => {
   const [fishingConditions, setFishingConditions] = useState("");
   const [description, setDescription] = useState("");
   const [allowedTime, setAllowedTime] = useState("");
+
   const [locPath, setLocaPath] = useState("");
   const coordinates = { latitude, longitude };
   const submitHandler = (evt) => {
@@ -28,6 +30,7 @@ export const NewData = ({ submit }) => {
       },
       locPath
     );
+    toast.success(`The location ${title} is created!`);
   };
 
   return (
@@ -53,13 +56,13 @@ export const NewData = ({ submit }) => {
             setLocaPath(evt.currentTarget.value);
           }}
         />
-        <datalist id="regions">
+        <SC.DataListStyled id="regions">
           <option value="locKyiv">Kyiv region</option>
           <option>Odesa region</option>
           <option>Dnipro region</option>
           <option>Chernihiv region</option>
           <option>Kharkiv region</option>
-        </datalist>
+        </SC.DataListStyled>
         <SC.LabelAddNewData htmlFor="title">Enter the title</SC.LabelAddNewData>
         <SC.InputAddNewData
           type="text"
