@@ -1,0 +1,47 @@
+.container {
+  /* background: #c0c0c0; */
+}
+
+.gridContainer {
+  background: #eee;
+  max-width: 1200px;
+  margin: 15px auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style-type: none;
+  gap: 24px;
+}
+
+.gridContainer > div {
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  padding: 16px;
+  background: #dcdcdc;
+}
+
+.locationTitle {
+  font-size: 24px;
+  font-weight: 1024;
+  font-style: italic;
+  font-family: "Shantell";
+  /* font-family: "Shantell Sans"; */
+}
+
+.locationPicture {
+  width: 320px;
+  height: 200px;
+  margin-bottom: 16px;
+}
+
+.fishList {
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+}
+
+.fishItem {
+  margin-bottom: 8px;
+}

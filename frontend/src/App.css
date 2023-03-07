@@ -1,10 +1,17 @@
 .App {
   text-align: center;
+  background: #d3d3d3;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+@font-face {
+  font-family: "Shantell";
+  src: local("Shantell"),
+    url(./Utilities/Fonts/Shantell/ShantellSans-.ttf) format("truetype");
 }
 
 @media (prefers-reduced-motion: no-preference) {

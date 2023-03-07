@@ -7,7 +7,7 @@ import { getFishingLocations } from "../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../Utilities/Regions/URL";
 import { postNewImage } from "../../Utilities/Regions/helpers";
 import { toast } from "react-toastify";
-import * as SC from "./FishingLocation.styled";
+import css from "./FishingLocationsList.module.css";
 
 export const FishingLocationsList = () => {
   const { locPath } = useParams();
@@ -35,34 +35,32 @@ export const FishingLocationsList = () => {
         <input type="file" name="image" />
         <button type="submit">Attach the image</button>
       </form>
-      <SC.ContainerFishingLocation>
-        <SC.FishingLocationList>
+      <div className={css.container}>
+        <ul className={css.gridContainer}>
           {location !== null &&
             location.map(({ title, adress, picture, fishes, _id }) => (
-              <SC.ContainerFishingLocationCard key={_id}>
+              <div key={_id}>
                 <Link to={_id} key={_id}>
-                  <SC.TitleFishingLocationList>
-                    {title}
-                  </SC.TitleFishingLocationList>
+                  <h1 className={css.locationTitle}>{title}</h1>
                 </Link>
                 <p style={{ color: "black" }}>{adress}</p>
                 <img
+                  className={css.locationPicture}
                   src={`${BaseUrlPicture}/${picture[0]}`}
                   alt={title}
-                  width={270}
                 />
-                <SC.LocationFishesList>
+                <ul className={css.fishList}>
                   {fishes.map((el) => (
-                    <SC.ItemFishesListStyled key={el}>
+                    <li key={el} className={css.fishItem}>
                       {el}
-                    </SC.ItemFishesListStyled>
+                    </li>
                   ))}
-                </SC.LocationFishesList>
-              </SC.ContainerFishingLocationCard>
+                </ul>
+              </div>
             ))}
-        </SC.FishingLocationList>
+        </ul>
         <Outlet />
-      </SC.ContainerFishingLocation>
+      </div>
     </div>
   );
 };
