@@ -1,3 +1,7 @@
 export const Footer = () => {
-  return <footer>This is a footer</footer>;
+  return (
+    <footer>
+      <p>© Copyright Fishing 2023</p>
+    </footer>
+  );
 };

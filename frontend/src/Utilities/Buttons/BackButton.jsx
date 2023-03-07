@@ -1,17 +1,18 @@
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
 import { useNavigate } from "react-router-dom";
-import * as SC from "./Button.styled";
+import css from "./Buttons.module.css";
 
 export const BackButton = () => {
   const navigate = useNavigate();
   return (
-    <SC.ButtonBackStyled
+    <button
       onClick={() => {
         navigate(-1);
       }}
+      className={css.button}
     >
-      <span style={{ marginRight: "5px" }}>Go back</span>
+      <span className={css.btnLinkText}>Go back</span>
       <ArrowUturnLeftIcon width={18} />
-    </SC.ButtonBackStyled>
+    </button>
   );
 };
