@@ -29,9 +29,10 @@
 }
 
 .locationPicture {
-  width: 320px;
+  /* width: 320px; */
   height: 200px;
   margin-bottom: 16px;
+  width: 100%;
 }
 
 .fishList {
