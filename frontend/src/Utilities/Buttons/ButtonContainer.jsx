@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import * as SC from "./Button.styled";
+import css from "./Buttons.module.css";
 
 export const ButtonContainer = ({ children }) => {
   return (
-    <SC.ButtonsContainerStyled>
+    <div className={css.btnContainer}>
       {children}
       <Outlet />
-    </SC.ButtonsContainerStyled>
+    </div>
   );
 };

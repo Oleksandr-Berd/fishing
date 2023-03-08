@@ -5,9 +5,7 @@ import { ButtonContainer } from "../../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../../Utilities/Buttons/HomeButton";
 import { getLocById } from "../../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../../Utilities/Regions/URL";
-// import { patchNewImage } from "../../../Utilities/Regions/helpers";
-import * as SC from "../FishingLocation.styled";
-
+import css from "./PreciseLocation.module.css";
 export const PreciseLocation = () => {
   const { _id, locPath } = useParams();
   const [location, setLocation] = useState("");
@@ -36,58 +34,61 @@ export const PreciseLocation = () => {
   } = location;
 
   return (
-    <SC.ContainerPreciseLocation>
+    <div>
       <ButtonContainer>
         <BackButton />
         <HomeButton />
       </ButtonContainer>
-      <SC.ContainerMapPreciseLocation>
-        <SC.ContainerTextPreciseLocation>
-          <h1>{location !== null && title}</h1>
-          <p>Adress: {adress}</p>
-          <p>{description}</p>
-          <p>Fishing conditions: {fishingConditions}</p>
-          <p>Allowed time for fishing: {allowedTime}</p>
-          <SC.ListFishPreciseLocation>
-            <span>Type of fish:</span>
-            {fishes &&
-              fishes.map((fish) => (
-                <SC.ItemFishPreciseLocation key={fish}>
-                  {fish}
-                </SC.ItemFishPreciseLocation>
-              ))}
-          </SC.ListFishPreciseLocation>
-        </SC.ContainerTextPreciseLocation>
+      <div className={css.gridContainer}>
+        <div className={css.dataContainer}>
+          <h1 className={css.title}>{location !== null && title}</h1>
+          <p className={css.adress}>Adress: {adress}</p>
+          <p className={css.description}>{description}</p>
+          <p style={{ fontSize: "24px" }}>
+            <span style={{ fontWeight: "800", fontSize: "24px" }}>
+              Fishing conditions:{" "}
+            </span>{" "}
+            {fishingConditions}
+          </p>
+          <p style={{ fontSize: "24px" }}>
+            <span style={{ fontWeight: "800", fontSize: "24px" }}>
+              Allowed time for fishing:{" "}
+            </span>{" "}
+            {allowedTime}
+          </p>
+          <ul className={css.fishList}>
+            <span style={{ fontWeight: "800", fontSize: "24px" }}>
+              Type of fish:
+            </span>
+            {fishes && fishes.map((fish) => <li key={fish}>{fish}</li>)}
+          </ul>
+        </div>
         {coordinates && (
           <iframe
             title={title}
             src={`https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d20280.311450652876!2d${coordinates.longitude}!3d${coordinates.latitude}!3m2!1i1024!2i768!4f13.1!5e0!3m2!1suk!2sua!4v1677849338306!5m2!1suk!2sua`}
-            width="600"
-            height="450"
-            style={{ border: 0 }}
+            className={css.map}
             loading="lazy"
           ></iframe>
         )}
-      </SC.ContainerMapPreciseLocation>
-      <SC.ContainerPicturesPreciseLocation>
-        <SC.ListPicturesPreciseLocation>
-          {/* <form onSubmit={submitPatchImage}>
+      </div>
+      <ul className={css.imagesList}>
+        {/* <form onSubmit={submitPatchImage}>
             <input type="file" name="image" />
             <button type="submit">Attach the image</button>
           </form> */}
-          {picture &&
-            picture.map((el) => (
-              <SC.ItemPicturePreciseLocation key={el}>
-                <img
-                  src={`${BaseUrlPicture}/${el}`}
-                  alt={el}
-                  width={160}
-                  height={100}
-                />
-              </SC.ItemPicturePreciseLocation>
-            ))}
-        </SC.ListPicturesPreciseLocation>
-      </SC.ContainerPicturesPreciseLocation>
-    </SC.ContainerPreciseLocation>
+        {picture &&
+          picture.map((el) => (
+            <li key={el}>
+              <img
+                src={`${BaseUrlPicture}/${el}`}
+                alt={el}
+                width={160}
+                height={100}
+              />
+            </li>
+          ))}
+      </ul>
+    </div>
   );
 };

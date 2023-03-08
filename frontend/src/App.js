@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { Header } from "./Components/Header/Head";
+import { Header } from "./Components/Header/Header";
 import { TitleHeader } from "./Components/Header/TitleHead";
 import { NavBar } from "./Components/NavBar/NavBar";
 import { Home } from "./Components/Home/Home";

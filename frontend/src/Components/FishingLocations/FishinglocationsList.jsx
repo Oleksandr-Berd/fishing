@@ -40,15 +40,15 @@ export const FishingLocationsList = () => {
           {location !== null &&
             location.map(({ title, adress, picture, fishes, _id }) => (
               <div key={_id}>
-                <Link to={_id} key={_id} className={css.locationItem}>
-                  <h1 className={css.locationTitle}>{title}</h1>
-                </Link>
-                <p style={{ color: "black" }}>{adress}</p>
                 <img
                   className={css.locationPicture}
                   src={`${BaseUrlPicture}/${picture[0]}`}
                   alt={title}
                 />
+                <Link to={_id} key={_id} className={css.locationItem}>
+                  <h1 className={css.locationTitle}>{title}</h1>
+                </Link>
+                <h3 className={css.adress}>{adress}</h3>
                 <ul className={css.fishList}>
                   {fishes.map((el) => (
                     <li key={el} className={css.fishItem}>

@@ -1,7 +1,3 @@
-.container {
-  /* background: #c0c0c0; */
-}
-
 .gridContainer {
   background: #eee;
   max-width: 1200px;
@@ -16,6 +12,8 @@
 }
 
 .gridContainer > div {
+  display: grid;
+  align-content: space-between;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
   padding: 16px;
@@ -32,11 +30,14 @@
   font-weight: 1024;
   font-style: italic;
   font-family: "Shantell";
-  /* font-family: "Shantell Sans"; */
+}
+
+.adress {
+  color: #000;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .locationPicture {
-  /* width: 320px; */
   height: 200px;
   margin-bottom: 16px;
   width: 100%;
@@ -52,4 +53,5 @@
 
 .fishItem {
   margin-bottom: 8px;
+  font-family: "PlayfairDisplay";
 }
