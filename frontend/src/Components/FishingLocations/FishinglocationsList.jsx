@@ -5,6 +5,7 @@ import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 import { getFishingLocations } from "../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../Utilities/Regions/URL";
+import { Dna } from "react-loader-spinner";
 // import { postNewImage } from "../../Utilities/Regions/helpers";
 // import { toast } from "react-toastify";
 import css from "./FishingLocationsList.module.css";
@@ -12,29 +13,29 @@ import css from "./FishingLocationsList.module.css";
 export const FishingLocationsList = () => {
   const { locPath } = useParams();
   const [location, setLocation] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    getFishingLocations(locPath).then(setLocation);
+    setLoading(true);
+    getFishingLocations(locPath).then(setLocation).finally(setLoading(false));
   }, [locPath]);
 
-  // const submitImage = (evt) => {
-  //   evt.preventDefault();
-  //   const data = new FormData();
-  //   data.append("image", evt.target.image.files[0]);
-  //   console.log(data);
-  //   postNewImage(data, locPath);
-  //   return toast.success("The image is added");
-  // };
   return (
     <div>
       <ButtonContainer>
         <BackButton />
         <HomeButton />
       </ButtonContainer>
-      {/* <form onSubmit={submitImage}>
-        <input type="file" name="image" />
-        <button type="submit">Attach the image</button>
-      </form> */}
+      {loading && (
+        <Dna
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="dna-loading"
+          wrapperStyle={{}}
+          wrapperClass="dna-wrapper"
+        />
+      )}
       <div className={css.container}>
         <ul className={css.gridContainer}>
           {location !== null &&
