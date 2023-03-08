@@ -44,22 +44,20 @@ export const PreciseLocation = () => {
           <h1 className={css.title}>{location !== null && title}</h1>
           <p className={css.adress}>Adress: {adress}</p>
           <p className={css.description}>{description}</p>
-          <p style={{ fontSize: "24px" }}>
+          <p style={{ fontSize: "20px" }}>
             <span style={{ fontWeight: "800", fontSize: "24px" }}>
               Fishing conditions:{" "}
             </span>{" "}
             {fishingConditions}
           </p>
-          <p style={{ fontSize: "24px" }}>
+          <p style={{ fontSize: "20px" }}>
             <span style={{ fontWeight: "800", fontSize: "24px" }}>
               Allowed time for fishing:{" "}
             </span>{" "}
             {allowedTime}
           </p>
+          <p style={{ fontWeight: "800", fontSize: "24px" }}>Type of fish:</p>
           <ul className={css.fishList}>
-            <span style={{ fontWeight: "800", fontSize: "24px" }}>
-              Type of fish:
-            </span>
             {fishes && fishes.map((fish) => <li key={fish}>{fish}</li>)}
           </ul>
         </div>

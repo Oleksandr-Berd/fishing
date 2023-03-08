@@ -1,10 +1,16 @@
-import * as SC from "./Home.styled";
-import { backgroundImageOne } from "../../Utilities/Common/images";
+import { BackButton } from "../../Utilities/Buttons/BackButton";
+import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
+import { HomeButton } from "../../Utilities/Buttons/HomeButton";
+import css from "./Home.module.css";
 
 export const Home = () => {
   return (
-    <SC.HomeStyled imgUrl={backgroundImageOne}>
+    <div className={css.container}>
+      <ButtonContainer>
+        <BackButton />
+        <HomeButton />
+      </ButtonContainer>
       <p>This is a Home page</p>
-    </SC.HomeStyled>
+    </div>
   );
 };

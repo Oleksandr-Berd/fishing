@@ -4,4 +4,28 @@ footer {
   padding: 16px;
   font-weight: 800;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.adressList {
+  list-style-type: none;
+  text-decoration: none;
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.adressList > li:not(:last-child) {
+  margin-right: 12px;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
 }

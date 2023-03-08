@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import * as SC from "./NavBar.styled";
 import { Outlet } from "react-router-dom";
+import css from "./NavBar.module.css";
 
 export const NavBar = () => {
   const navItem = [
@@ -11,10 +11,10 @@ export const NavBar = () => {
   ];
 
   return (
-    <nav>
+    <nav className={css.navBar}>
       {navItem.map(({ href, text }) => (
-        <Link to={href} key={href}>
-          <SC.NavLinkStyled> {text}</SC.NavLinkStyled>
+        <Link to={href} key={href} className={css.link}>
+          <span className={css.text}> {text}</span>
         </Link>
       ))}
       <Outlet />

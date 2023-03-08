@@ -36,9 +36,9 @@ function App() {
       </Header>
       <Routes>
         <Route path="/" element={<NavBar />}>
-          <Route index element={<Navigate to="/home" />}></Route>
           <Route path="home" element={<Home />} />
         </Route>
+        <Route index element={<Navigate to={"home"} />}></Route>
         <Route path="region" element={<RegionList />} />
         <Route path="region/:locPath" element={<FishingLocationsList />} />
         <Route path="region/:locPath/:_id" element={<PreciseLocation />} />
