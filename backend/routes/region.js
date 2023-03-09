@@ -1,5 +1,6 @@
 const express = require("express");
 const regionController = require("../controllers/regionController");
+const upload = require("../middlewares/addNewData");
 const auth = require("../middlewares/auth");
 const asyncHandler = require("express-async-handler");
 
@@ -8,6 +9,15 @@ const asyncHandler = require("express-async-handler");
 const regionRouter = express.Router();
 
 regionRouter.post("/region", regionController.add);
+regionRouter.post(
+  "/region/newData",
+  upload.single("image"),
+  regionController.addImageRegion
+);
+regionRouter.patch(
+  "/region/newData/:id",
+  asyncHandler(regionController.updateImageRegion)
+);
 regionRouter.get("/region", asyncHandler(regionController.getAll));
 regionRouter.get("/region/:id", asyncHandler(regionController.getOne));
 regionRouter.put("/region/:id", asyncHandler(regionController.update));

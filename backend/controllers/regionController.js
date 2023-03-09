@@ -1,5 +1,12 @@
 const { regionModel } = require("../models/index");
 const { isValidObjectId } = require("mongoose");
+const path = require("path");
+const fs = require("fs/promises");
+const { v4 } = require("uuid");
+
+const regionsImageDir = path.join(__dirname, "..", "public", "region");
+
+let regionsImageArray = [];
 
 class regionController {
   add = async (req, res) => {
@@ -93,6 +100,42 @@ class regionController {
       code: 200,
       message: "Successful success",
       data: region,
+    });
+  };
+
+  addImageRegion = async (req, res) => {
+    const { path: tempUpload, originalname } = req.file;
+    const resultUpload = path.join(regionsImageDir, originalname);
+    const image = path.join("region", originalname);
+    try {
+      await fs.rename(tempUpload, resultUpload);
+      const newPicture = {
+        name: req.body.name,
+        id: v4(),
+        image,
+      };
+      regionsImageArray.push(newPicture.image);
+      res.status(201).json({ message: "Successful success" });
+    } catch (error) {
+      await fs.unlink(tempUpload);
+      console.log(error.message);
+    }
+  };
+  updateImageRegion = async (req, res) => {
+    console.log(regionsImageArray);
+    const { id } = req.params;
+    const regionsImage = await regionModel.findByIdAndUpdate(id, {
+      image: regionsImageArray,
+    });
+    if (!regionsImage) {
+      res.status(400);
+      throw new Error("There is no location with this id");
+    }
+
+    res.status(200).json({
+      code: 200,
+      message: "Successful success",
+      data: regionsImage,
     });
   };
 }

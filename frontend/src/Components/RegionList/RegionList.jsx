@@ -15,7 +15,6 @@ export const RegionList = () => {
     setLoading(true);
     getRegions().then(setRegions).finally(setLoading(false));
   }, []);
-
   return (
     <>
       <ButtonContainer>
