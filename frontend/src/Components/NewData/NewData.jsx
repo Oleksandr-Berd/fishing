@@ -2,8 +2,8 @@ import { useState } from "react";
 import { BackButton } from "../../Utilities/Buttons/BackButton";
 import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
-import * as SC from "./NewData.styled";
 import { toast } from "react-toastify";
+import css from "./NewData.module.css";
 
 export const NewData = ({ submit }) => {
   const [title, setTitle] = useState("");
@@ -39,16 +39,18 @@ export const NewData = ({ submit }) => {
         <BackButton />
         <HomeButton />
       </ButtonContainer>
-      <SC.FormContainer
+      <form
+        className={css.form}
         method="post"
         id="form"
         encType="multipart/form-data"
         onSubmit={submitHandler}
       >
-        <SC.LabelAddNewData htmlFor="region">
+        <label className={css.label} htmlFor="region">
           Choose your region
-        </SC.LabelAddNewData>
-        <SC.InputAddNewData
+        </label>
+        <input
+          className={css.input}
           list="regions"
           name="region"
           id="region"
@@ -56,15 +58,18 @@ export const NewData = ({ submit }) => {
             setLocaPath(evt.currentTarget.value);
           }}
         />
-        <SC.DataListStyled id="regions">
+        <datalist className={css.datalist} id="regions">
           <option value="locKyiv">Kyiv region</option>
           <option>Odesa region</option>
           <option>Dnipro region</option>
           <option>Chernihiv region</option>
           <option>Kharkiv region</option>
-        </SC.DataListStyled>
-        <SC.LabelAddNewData htmlFor="title">Enter the title</SC.LabelAddNewData>
-        <SC.InputAddNewData
+        </datalist>
+        <label className={css.label} htmlFor="title">
+          Enter the title
+        </label>
+        <input
+          className={css.input}
           type="text"
           name="title"
           onChange={(evt) => {
@@ -74,25 +79,28 @@ export const NewData = ({ submit }) => {
           placeholder="e.g. New Title"
           id="title"
         />
-        <SC.LabelAddNewData>Enter the coordinates</SC.LabelAddNewData>
-        <SC.InputAddNewData
+        <label className={css.label}>Enter the coordinates</label>
+        <input
+          className={css.input}
           name="latitude"
           onChange={(evt) => {
             setCoordinates({ latitude: evt.currentTarget.value });
           }}
           placeholder="latitude e.g. 50.50505"
         />
-        <SC.InputAddNewData
+        <input
+          className={css.input}
           name="longitude"
           onChange={(evt) => {
             setCoordinates({ latitude, longitude: evt.currentTarget.value });
           }}
           placeholder="longitude e.g. 30.30303"
         />
-        <SC.LabelAddNewData htmlFor="adress">
+        <label className={css.label} htmlFor="adress">
           Enter the adress
-        </SC.LabelAddNewData>
-        <SC.InputAddNewData
+        </label>
+        <input
+          className={css.input}
           type="text"
           name="adress"
           onChange={(evt) => {
@@ -102,8 +110,11 @@ export const NewData = ({ submit }) => {
           placeholder="e.g. Road to Heaven"
           id="adress"
         />
-        <SC.LabelAddNewData htmlFor="fish">Enter the fish</SC.LabelAddNewData>
-        <SC.InputAddNewData
+        <label className={css.label} htmlFor="fish">
+          Enter the fish
+        </label>
+        <input
+          className={css.input}
           type="text"
           name="fish"
           onChange={(evt) => {
@@ -113,10 +124,11 @@ export const NewData = ({ submit }) => {
           placeholder="e.g. fish1, fish2"
           id="fish"
         />
-        <SC.LabelAddNewData htmlFor="fishingConditions">
+        <label className={css.label} htmlFor="fishingConditions">
           Enter the fishing conditions
-        </SC.LabelAddNewData>
-        <SC.InputAddNewData
+        </label>
+        <input
+          className={css.input}
           type="text"
           name="fishingConditions"
           onChange={(evt) => {
@@ -126,9 +138,9 @@ export const NewData = ({ submit }) => {
           placeholder="e.g. Everything is perfect"
           id="fishingConditions"
         />
-        <SC.LabelAddNewData htmlFor="description">
+        <label className={css.label} htmlFor="description">
           Enter the description
-        </SC.LabelAddNewData>
+        </label>
         <textarea
           type="text"
           name="description"
@@ -140,10 +152,11 @@ export const NewData = ({ submit }) => {
           id="description"
           rows="5"
         />
-        <SC.LabelAddNewData htmlFor="allowedTime">
+        <label className={css.label} htmlFor="allowedTime">
           Enter the allowed time
-        </SC.LabelAddNewData>
-        <SC.InputAddNewData
+        </label>
+        <input
+          className={css.input}
           type="text"
           name="allowedTime"
           onChange={(evt) => {
@@ -154,7 +167,7 @@ export const NewData = ({ submit }) => {
           id="allowedTime"
         />
         <button type="submit">Submit</button>
-      </SC.FormContainer>
+      </form>
     </div>
   );
 };

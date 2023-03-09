@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   min-height: 100%;
-  /* width: 1400px; */
   justify-items: center;
   justify-content: center;
   grid-template-rows: 1fr;
@@ -13,14 +12,12 @@
 .panelFirst {
   display: grid;
   grid-template-rows: 2fr 1fr;
-  /* width: 400px; */
   min-height: 100%;
 }
 
 .panelSecond {
   display: grid;
   grid-template-rows: 1fr 2fr;
-  /* width: 400px; */
   min-height: 100%;
 }
 
