@@ -20,15 +20,15 @@ export const Regions = ({ regions, loading }) => {
       )}
       {regions.map(({ _id, name, locPath, image }) => (
         <div key={_id}>
-          <img src={`${BaseUrlPicture}/${image[0]}`} alt={name} />
           <Link
             key={_id}
             to={`/region/${locPath}`}
             state={{ from: location }}
             className={css.link}
           >
-            <li className={css.regionsItem}>{name}</li>
+            <h1 className={css.regionsItem}> {name}</h1>
           </Link>
+          <img src={`${BaseUrlPicture}/${image[0]}`} alt="" />
         </div>
       ))}
     </ul>

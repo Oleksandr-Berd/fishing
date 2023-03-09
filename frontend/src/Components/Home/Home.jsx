@@ -9,21 +9,25 @@ import image6 from "../../Utilities/Images/home/gone_fishing.max-752x423.jpg";
 export const Home = () => {
   return (
     <div className={css.container}>
-      <div className={css.container}>
+      <div className={css.panelFirst}>
         <div className={css.panelTall}>
           <img src={image} alt="fishing" />
         </div>
         <div className={css.panelSmall}>
           <img src={image2} alt="fishing" />
         </div>
+      </div>
 
+      <div className={css.panelSecond}>
         <div className={css.panelSmall}>
           <img src={image3} alt="fishing" />
         </div>
         <div className={css.panelTall}>
           <img src={image4} alt="fishing" />
         </div>
+      </div>
 
+      <div className={css.panelFirst}>
         <div className={css.panelTall}>
           <img src={image5} alt="fishing" />
         </div>
