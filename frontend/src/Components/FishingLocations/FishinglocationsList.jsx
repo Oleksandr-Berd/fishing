@@ -6,8 +6,6 @@ import { HomeButton } from "../../Utilities/Buttons/HomeButton";
 import { getFishingLocations } from "../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../Utilities/Regions/URL";
 import { Dna } from "react-loader-spinner";
-// import { postNewImage } from "../../Utilities/Regions/helpers";
-// import { toast } from "react-toastify";
 import css from "./FishingLocationsList.module.css";
 
 export const FishingLocationsList = () => {

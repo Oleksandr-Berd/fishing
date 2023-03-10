@@ -30,7 +30,7 @@ export const NewData = ({ submit }) => {
       },
       locPath
     );
-    toast.success(`The location ${title} is created!`);
+    toast.success(`The location is created!`);
   };
 
   return (
@@ -166,7 +166,9 @@ export const NewData = ({ submit }) => {
           placeholder="e.g. Whenever you want"
           id="allowedTime"
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className={css.button}>
+          Submit
+        </button>
       </form>
     </div>
   );

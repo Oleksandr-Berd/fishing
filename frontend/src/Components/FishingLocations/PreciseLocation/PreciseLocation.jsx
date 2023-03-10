@@ -9,18 +9,10 @@ import css from "./PreciseLocation.module.css";
 export const PreciseLocation = () => {
   const { _id, locPath } = useParams();
   const [location, setLocation] = useState("");
-  // const [image, setImage] = useState("");
 
   useEffect(() => {
     getLocById(_id, locPath).then(setLocation);
   }, [_id, locPath]);
-
-  // const submitPatchImage = (evt) => {
-  //   evt.preventDefault();
-  //   const data = new FormData();
-  //   data.append("image", evt.target.image.files[0]);
-  //   patchNewImage(evt.target.image.files[0], locPath, _id);
-  // };
 
   const {
     title,
