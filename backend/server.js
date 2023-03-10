@@ -23,10 +23,17 @@ const addNewDataRouterKyiv = require("./routes/addNewDataRouter");
 
 app.use(cors({ origin: true }));
 
-app.use(
-  "/public/kyivLocPictures",
-  express.static(path.join(__dirname, "/public/kyivLocPictures/"))
-);
+app.use("/public", express.static(path.join(__dirname, "/public")));
+
+// app.use(
+//   "/public/kyivLocPictures",
+//   express.static(path.join(__dirname, "/public/kyivLocPictures/"))
+// );
+
+// app.use(
+//   "/public/region",
+//   express.static(path.join(__dirname, "/public/region/"))
+// );
 
 app.use("/", addNewDataRouterKyiv);
 
