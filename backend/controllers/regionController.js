@@ -132,11 +132,14 @@ class regionController {
       throw new Error("There is no location with this id");
     }
 
-    res.status(200).json({
-      code: 200,
-      message: "Successful success",
-      data: regionsImage,
-    });
+    res
+      .status(200)
+      .json({
+        code: 200,
+        message: "Successful success",
+        data: regionsImage,
+      })
+      .then((regionsImageArray = []));
   };
 }
 
