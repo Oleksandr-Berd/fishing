@@ -1,42 +1,34 @@
 import { Link, useLocation } from "react-router-dom";
-import { Dna } from "react-loader-spinner";
 import css from "./Regions.module.css";
 import { BaseUrlPicture } from "../../Utilities/Regions/URL";
+import { useState } from "react";
+import { Modal } from "./Modal/Modal";
 
-export const Regions = ({ regions, loading }) => {
+export const Regions = ({ id, name, locPath, image }) => {
   const location = useLocation();
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = (evt) => setShowModal(!showModal);
 
   return (
-    <ul className={css.regionsList}>
-      {loading && (
-        <Dna
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper"
-        />
+    <li key={id} className={css.container}>
+      <img
+        src={`${BaseUrlPicture}/${image[0]}`}
+        alt=""
+        className={css.image}
+        onClick={toggleModal}
+      />
+      {showModal && (
+        <Modal onClose={toggleModal} imageUrl={image} title={name} />
       )}
-      {regions
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .map(({ _id, name, locPath, image }) => (
-          <div key={_id} className={css.container}>
-            <Link
-              key={_id}
-              to={`/region/${locPath}`}
-              state={{ from: location }}
-              className={css.link}
-            >
-              <img
-                src={`${BaseUrlPicture}/${image[0]}`}
-                alt=""
-                className={css.image}
-              />
-              <h1 className={css.regionsItem}> {name}</h1>
-            </Link>
-          </div>
-        ))}
-    </ul>
+      <Link
+        key={id}
+        to={`/region/${locPath}`}
+        state={{ from: location }}
+        className={css.link}
+      >
+        <h1 className={css.regionsItem}> {name}</h1>
+      </Link>
+    </li>
   );
 };

@@ -21,11 +21,18 @@
 .container {
   display: grid;
   align-items: center;
-
+  justify-content: center;
   padding: 24px;
   background: #dcdcdc;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+}
+
+.image {
+  max-width: 100%;
+  height: 200px;
+  margin-bottom: 16px;
+  cursor: zoom-in;
 }
 
 .link {
@@ -37,11 +44,4 @@
 .link :hover,
 .link :focus {
   color: #007fff;
-}
-
-.image {
-  max-width: 100%;
-  height: 200px;
-  margin-bottom: 16px;
-  cursor: zoom-in;
 }
