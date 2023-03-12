@@ -5,10 +5,7 @@ import { BaseUrlPicture } from "../../Utilities/Regions/URL";
 
 export const Regions = ({ regions, loading }) => {
   const location = useLocation();
-  const arrayRegions = regions.sort((a, b) => {
-    return a.name.localeCompare(b.name);
-  });
-  console.log(arrayRegions);
+
   return (
     <ul className={css.regionsList}>
       {loading && (
@@ -22,7 +19,7 @@ export const Regions = ({ regions, loading }) => {
         />
       )}
       {regions
-        .sort((a, b) => b.name - a.name)
+        .sort((a, b) => a.name.localeCompare(b.name))
         .map(({ _id, name, locPath, image }) => (
           <div key={_id} className={css.container}>
             <Link
