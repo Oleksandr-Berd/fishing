@@ -12,6 +12,7 @@
 .image {
   width: 160px;
   height: 100px;
+  cursor: zoom-in;
 }
 
 .imageItem:hover .image,

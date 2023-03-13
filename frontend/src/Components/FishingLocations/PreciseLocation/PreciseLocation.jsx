@@ -63,21 +63,7 @@ export const PreciseLocation = () => {
         )}
       </div>
       <ul className={css.imagesList}>
-        {/* <form onSubmit={submitPatchImage}>
-            <input type="file" name="image" />
-            <button type="submit">Attach the image</button>
-          </form> */}
-        {picture &&
-          picture.map((el) => (
-            <PrecLocImages image={el} />
-            // <li key={el} className={css.imageItem}>
-            //   <img
-            //     src={`${BaseUrlPicture}/${el}`}
-            //     alt={el}
-            //     className={css.image}
-            //   />
-            // </li>
-          ))}
+        {picture && picture.map((el) => <PrecLocImages image={el} />)}
       </ul>
     </div>
   );

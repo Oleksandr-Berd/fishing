@@ -53,7 +53,6 @@
 
 .imagesList {
   display: grid;
-  /* grid-template-columns: repeat(6, 1fr); */
   gap: 24px;
   justify-content: center;
   list-style-type: none;
@@ -61,7 +60,3 @@
   margin-top: 0;
   margin-bottom: 24px;
 }
-
-/* .imagesList > li:not(:last-child) {
-  margin-right: 16px;
-} */
