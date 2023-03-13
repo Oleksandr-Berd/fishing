@@ -69,12 +69,11 @@ export const PreciseLocation = () => {
           </form> */}
         {picture &&
           picture.map((el) => (
-            <li key={el}>
+            <li key={el} className={css.imageItem}>
               <img
                 src={`${BaseUrlPicture}/${el}`}
                 alt={el}
-                width={160}
-                height={100}
+                className={css.image}
               />
             </li>
           ))}
