@@ -4,8 +4,8 @@ import { BackButton } from "../../../Utilities/Buttons/BackButton";
 import { ButtonContainer } from "../../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../../Utilities/Buttons/HomeButton";
 import { getLocById } from "../../../Utilities/Regions/helpers";
-import { BaseUrlPicture } from "../../../Utilities/Regions/URL";
 import css from "./PreciseLocation.module.css";
+import { PrecLocImages } from "./PrecLocImages/PrecLocImages";
 export const PreciseLocation = () => {
   const { _id, locPath } = useParams();
   const [location, setLocation] = useState("");
@@ -69,13 +69,14 @@ export const PreciseLocation = () => {
           </form> */}
         {picture &&
           picture.map((el) => (
-            <li key={el} className={css.imageItem}>
-              <img
-                src={`${BaseUrlPicture}/${el}`}
-                alt={el}
-                className={css.image}
-              />
-            </li>
+            <PrecLocImages image={el} />
+            // <li key={el} className={css.imageItem}>
+            //   <img
+            //     src={`${BaseUrlPicture}/${el}`}
+            //     alt={el}
+            //     className={css.image}
+            //   />
+            // </li>
           ))}
       </ul>
     </div>
