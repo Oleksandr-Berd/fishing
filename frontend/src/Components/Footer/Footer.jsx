@@ -6,7 +6,7 @@ import css from "./Footer.module.css";
 export const Footer = () => {
   return (
     <footer className={css.footer}>
-      <p style={{ marginBottom: "0" }}>© Copyright Fishing 2023 test</p>
+      <p style={{ marginBottom: "0" }}>© Copyright Fishing 2023</p>
       <address className={css.adress}>
         <ul className={css.adressList}></ul>
         <ul className={css.socList}>
