@@ -5,6 +5,7 @@ import { ButtonContainer } from "../../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../../Utilities/Buttons/HomeButton";
 import { getLocById } from "../../../Utilities/Regions/helpers";
 import { FormAddImage } from "../../FormAddImage/FormAddImage";
+import { nanoid } from "nanoid";
 import css from "./PreciseLocation.module.css";
 import { PrecLocImages } from "./PrecLocImages/PrecLocImages";
 export const PreciseLocation = () => {
@@ -51,7 +52,7 @@ export const PreciseLocation = () => {
           </p>
           <p style={{ fontWeight: "800", fontSize: "24px" }}>Type of fish:</p>
           <ul className={css.fishList}>
-            {fishes && fishes.map((fish) => <li key={fish}>{fish}</li>)}
+            {fishes && fishes.map((fish) => <li key={nanoid()}>{fish}</li>)}
           </ul>
         </div>
         {coordinates && (
@@ -64,7 +65,8 @@ export const PreciseLocation = () => {
         )}
       </div>
       <ul className={css.imagesList}>
-        {picture && picture.map((el) => <PrecLocImages image={el} />)}
+        {picture &&
+          picture.map((el) => <PrecLocImages image={el} key={nanoid()} />)}
       </ul>
       <FormAddImage locPath={locPath} id={_id} />
     </div>
