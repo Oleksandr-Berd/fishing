@@ -2,7 +2,6 @@ import { useState } from "react";
 import { BackButton } from "../../Utilities/Buttons/BackButton";
 import { ButtonContainer } from "../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../Utilities/Buttons/HomeButton";
-import { toast } from "react-toastify";
 import css from "./NewData.module.css";
 
 export const NewData = ({ submit }) => {
@@ -14,7 +13,7 @@ export const NewData = ({ submit }) => {
   const [description, setDescription] = useState("");
   const [allowedTime, setAllowedTime] = useState("");
 
-  const [locPath, setLocaPath] = useState("");
+  const [locPath, setLocPath] = useState("");
   const coordinates = { latitude, longitude };
   const submitHandler = (evt) => {
     evt.preventDefault();
@@ -30,7 +29,13 @@ export const NewData = ({ submit }) => {
       },
       locPath
     );
-    toast.success(`The location is created!`);
+    setTitle("");
+    setCoordinates({});
+    setAdress("");
+    setFishes([]);
+    setFishingConditions("");
+    setDescription("");
+    setAllowedTime("");
   };
 
   return (
@@ -55,7 +60,7 @@ export const NewData = ({ submit }) => {
           name="region"
           id="region"
           onChange={(evt) => {
-            setLocaPath(evt.currentTarget.value);
+            setLocPath(evt.currentTarget.value);
           }}
         />
         <datalist className={css.datalist} id="regions">
@@ -135,13 +140,14 @@ export const NewData = ({ submit }) => {
             setFishingConditions(evt.currentTarget.value);
           }}
           value={fishingConditions}
-          placeholder="e.g. Everything is perfect"
+          placeholder="e.g. Everything great"
           id="fishingConditions"
         />
         <label className={css.label} htmlFor="description">
           Enter the description
         </label>
         <textarea
+          className={css.textarea}
           type="text"
           name="description"
           onChange={(evt) => {
@@ -150,7 +156,7 @@ export const NewData = ({ submit }) => {
           value={description}
           placeholder="e.g. Very interesting location"
           id="description"
-          rows="5"
+          rows="8"
         />
         <label className={css.label} htmlFor="allowedTime">
           Enter the allowed time
