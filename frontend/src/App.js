@@ -12,7 +12,6 @@ import { PreciseLocation } from "./Components/FishingLocations/PreciseLocation/P
 import { NewData } from "./Components/NewData/NewData";
 import { useEffect, useState } from "react";
 import { postNewData } from "./Utilities/Regions/helpers";
-import { toast } from "react-toastify";
 
 function App() {
   const [finalBody, setFinalBody] = useState({});
@@ -21,7 +20,6 @@ function App() {
   const handleFormSubmitAddData = (body, locPath) => {
     setFinalBody(body);
     setFinalPath(locPath);
-    toast.success(`The location is created!`);
   };
 
   useEffect(() => {
@@ -36,6 +34,7 @@ function App() {
       <Header>
         <TitleHeader />
       </Header>
+
       <Routes>
         <Route path="/" element={<NavBar />}>
           <Route path="home" element={<Home />} />
@@ -50,6 +49,7 @@ function App() {
         />
         <Route path="fishes" element={<Fishes />} />
       </Routes>
+
       <Footer></Footer>
     </div>
   );

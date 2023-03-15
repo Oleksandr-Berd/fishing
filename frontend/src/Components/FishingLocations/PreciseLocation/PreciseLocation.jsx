@@ -4,6 +4,7 @@ import { BackButton } from "../../../Utilities/Buttons/BackButton";
 import { ButtonContainer } from "../../../Utilities/Buttons/ButtonContainer";
 import { HomeButton } from "../../../Utilities/Buttons/HomeButton";
 import { getLocById } from "../../../Utilities/Regions/helpers";
+import { FormAddImage } from "../../FormAddImage/FormAddImage";
 import css from "./PreciseLocation.module.css";
 import { PrecLocImages } from "./PrecLocImages/PrecLocImages";
 export const PreciseLocation = () => {
@@ -65,6 +66,7 @@ export const PreciseLocation = () => {
       <ul className={css.imagesList}>
         {picture && picture.map((el) => <PrecLocImages image={el} />)}
       </ul>
+      <FormAddImage locPath={locPath} id={_id} />
     </div>
   );
 };
