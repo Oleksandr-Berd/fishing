@@ -1,18 +1,18 @@
 import axios from "axios";
-import { URL } from "./URL";
+import { URL, URLpaginate } from "./URL";
 import { patchImageUrl } from "./URL";
 
 export const getRegions = async ({ page, perPage }) => {
   return await axios
-    .get(`${URL}?page=${page}&limit=${perPage}`)
+    .get(`${URLpaginate}?page=${page}&limit=${perPage}`)
     .then((response) => response.data.data.results)
     .catch((err) => console.log(err));
 };
 
-export const getFishingLocations = async (locPath) => {
+export const getFishingLocations = async ({ locPath, page, perPage }) => {
   return await axios
-    .get(`${URL}/${locPath}`)
-    .then((response) => response.data.data)
+    .get(`${URLpaginate}/${locPath}?page=${page}&limit=${perPage}`)
+    .then((response) => response.data.data.results)
     .catch((err) => console.log(err));
 };
 

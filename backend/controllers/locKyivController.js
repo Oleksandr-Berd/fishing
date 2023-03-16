@@ -5,12 +5,8 @@ class LocKyivController {
   add = async (req, res) => {
     const {
       title,
-      // coordinates,
-      // adress,
+
       fishes,
-      // fishing_conditions,
-      // description,
-      // allowed_time,
     } = req.body;
 
     if (!title || !fishes) {
@@ -29,16 +25,37 @@ class LocKyivController {
   };
 
   getAll = async (req, res) => {
-    const locsKyiv = await locKyivModel.find({});
-    if (!locsKyiv) {
+    const locKyiv = await locKyivModel.find({});
+    if (!locKyiv) {
       res.status(400);
       throw new Error("Unable to fetch the data");
     }
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const results = {};
+    if (endIndex < locKyiv.length) {
+      results.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+
+    results.results = locKyiv.slice(startIndex, endIndex);
+    res.paginatedResults = results;
     res.status(201).json({
       code: 200,
       message: "Successful success",
-      data: locsKyiv,
-      quantity: locsKyiv.length,
+      data: results,
+      quantity: locKyiv.length,
     });
   };
 

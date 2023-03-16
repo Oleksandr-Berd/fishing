@@ -18,7 +18,7 @@ export const RegionList = () => {
     setLoading(true);
     getRegions({ page, perPage }).then(setRegions).finally(setLoading(false));
   }, [page, perPage]);
-  console.log(regions.length);
+
   const shoudLoadingButton =
     regions.length > 0 && regions.length >= perPage && !loading;
 

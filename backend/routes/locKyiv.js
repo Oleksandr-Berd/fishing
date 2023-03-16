@@ -8,7 +8,7 @@ const asyncHandler = require("express-async-handler");
 const locKyivRouter = express.Router();
 
 locKyivRouter.post("/locKyiv", locKyivController.add);
-locKyivRouter.get("/locKyiv", asyncHandler(locKyivController.getAll));
+locKyivRouter.get("/paginate/locKyiv", asyncHandler(locKyivController.getAll));
 locKyivRouter.get("/locKyiv/:id", asyncHandler(locKyivController.getOne));
 locKyivRouter.put("/locKyiv/:id", asyncHandler(locKyivController.update));
 locKyivRouter.patch(
