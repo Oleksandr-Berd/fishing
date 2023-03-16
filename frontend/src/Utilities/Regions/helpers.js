@@ -74,3 +74,9 @@ export const patchNewImage = async (data, locPath, _id) => {
       console.log(error);
     });
 };
+
+export const getWeather = async ({ latitude, longitude }) => {
+  return await axios.get(
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m`
+  );
+};

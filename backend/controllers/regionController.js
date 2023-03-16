@@ -36,7 +36,6 @@ class regionController {
     const regions = region.sort((a, b) => {
       return a.name.localeCompare(b.name);
     });
-    console.log(regions);
     const page = parseInt(req.query.page);
     const limit = parseInt(req.query.limit);
     const startIndex = (page - 1) * limit;

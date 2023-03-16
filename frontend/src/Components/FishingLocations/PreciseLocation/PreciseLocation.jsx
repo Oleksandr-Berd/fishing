@@ -27,6 +27,10 @@ export const PreciseLocation = () => {
     picture,
   } = location;
 
+  // useEffect(() => {
+  //   getWeather(coordinates).then(console.log);
+  // }, [coordinates]);
+
   return (
     <div>
       <ButtonContainer>

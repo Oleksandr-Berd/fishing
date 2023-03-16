@@ -7,7 +7,7 @@ export const NavBar = () => {
     { href: "home", text: "Home" },
     { href: "newData", text: "Add your own data" },
     { href: "region", text: "Fishing locations" },
-    { href: "fishes", text: "Fishes" },
+    { href: "fishes", text: "Fish" },
   ];
 
   return (
