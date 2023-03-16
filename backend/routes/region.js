@@ -18,7 +18,7 @@ regionRouter.patch(
   "/region/newData/:id",
   asyncHandler(regionController.updateImageRegion)
 );
-regionRouter.get("/region", asyncHandler(regionController.getAll));
+regionRouter.get("/region/paginate", asyncHandler(regionController.getAll));
 regionRouter.get("/region/:id", asyncHandler(regionController.getOne));
 regionRouter.put("/region/:id", asyncHandler(regionController.update));
 regionRouter.patch("/region/:id", asyncHandler(regionController.updateDetail));
