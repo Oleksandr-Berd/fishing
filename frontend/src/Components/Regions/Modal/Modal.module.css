@@ -27,4 +27,5 @@
 .image {
   width: auto;
   height: 700px;
+  border: solid 1px #fff;
 }

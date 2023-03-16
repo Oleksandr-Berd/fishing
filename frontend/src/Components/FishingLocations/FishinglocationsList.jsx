@@ -38,7 +38,7 @@ export const FishingLocationsList = () => {
         <ul className={css.gridContainer}>
           {location !== null &&
             location.map(({ title, adress, picture, fishes, _id }) => (
-              <div key={_id}>
+              <div key={_id} className={css.item}>
                 <img
                   className={css.locationPicture}
                   src={`${BaseUrlPicture}/${picture[0]}`}

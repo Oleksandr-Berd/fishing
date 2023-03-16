@@ -64,6 +64,7 @@ export const PreciseLocation = () => {
           ></iframe>
         )}
       </div>
+
       <ul className={css.imagesList}>
         {picture &&
           picture.map((el) => <PrecLocImages image={el} key={nanoid()} />)}

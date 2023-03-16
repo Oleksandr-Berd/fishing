@@ -1,4 +1,5 @@
 import { patchNewImage, postNewImage } from "../../Utilities/Regions/helpers";
+import css from "./FormAddImage.module.css";
 
 export const FormAddImage = ({ locPath, id }) => {
   const handleImageSubmit = (evt) => {
@@ -13,9 +14,11 @@ export const FormAddImage = ({ locPath, id }) => {
   };
 
   return (
-    <form onSubmit={handleImageSubmit}>
-      <input type="file" name="image" />
-      <button type="submit">Upload</button>
+    <form className={css.form} onSubmit={handleImageSubmit}>
+      <input className={css.input} type="file" name="image" />
+      <button className={css.btn} type="submit">
+        Upload
+      </button>
     </form>
   );
 };
