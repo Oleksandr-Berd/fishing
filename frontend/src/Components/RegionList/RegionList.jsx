@@ -12,17 +12,25 @@ export const RegionList = () => {
   const [regions, setRegions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
+  const [perPage] = useState(4);
 
   useEffect(() => {
     setLoading(true);
-    getRegions({ page }).then(setRegions).finally(setLoading(false));
-  }, [page]);
+    getRegions({ page, perPage }).then(setRegions).finally(setLoading(false));
+  }, [page, perPage]);
+  console.log(regions.length);
+  const shoudLoadingButton =
+    regions.length > 0 && regions.length >= perPage && !loading;
 
-  const shoudlLoadingButton = regions.length > 0 && !loading;
+  const shouldBackButton = page !== 1 && !loading;
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
     console.log(page);
+  };
+
+  const backLoad = () => {
+    setPage((prevPage) => prevPage - 1);
   };
 
   return (
@@ -53,9 +61,21 @@ export const RegionList = () => {
               image={image}
             />
           ))}
-        {shoudlLoadingButton && <button onClick={loadMore}>Load More</button>}
-        <Outlet />
       </ul>
+      <ButtonContainer>
+        {shouldBackButton && (
+          <button className={css.button} onClick={backLoad}>
+            Load Prev
+          </button>
+        )}
+        {shoudLoadingButton && (
+          <button className={css.button} onClick={loadMore}>
+            Load Next
+          </button>
+        )}
+      </ButtonContainer>
+
+      <Outlet />
     </>
   );
 };
