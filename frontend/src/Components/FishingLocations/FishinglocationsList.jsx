@@ -7,7 +7,7 @@ import { getFishingLocations } from "../../Utilities/Regions/helpers";
 import { BaseUrlPicture } from "../../Utilities/Regions/URL";
 import { Dna } from "react-loader-spinner";
 import css from "./FishingLocationsList.module.css";
-
+import lastImage from "../../Utilities/Images/common/how_to_surf_fish.jpg";
 export const FishingLocationsList = () => {
   const { locPath } = useParams();
   const [location, setLocation] = useState([]);
@@ -21,7 +21,6 @@ export const FishingLocationsList = () => {
       .then(setLocation)
       .finally(setLoading(false));
   }, [locPath, page, perPage]);
-  console.log(location);
   const shoudLoadingButton =
     location.length > 0 && location.length >= perPage && !loading;
 
@@ -79,7 +78,12 @@ export const FishingLocationsList = () => {
           </ul>
         )}
         {location.length === 0 && (
-          <h1>Oops! There is no more locations in this region!</h1>
+          <>
+            <h1 className={css.endTitle}>
+              Oops! There is no more locations in this region!
+            </h1>
+            <img src={lastImage} alt={lastImage} />
+          </>
         )}
         <ButtonContainer>
           {shouldBackButton && (

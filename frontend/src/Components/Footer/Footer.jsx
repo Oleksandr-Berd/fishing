@@ -8,7 +8,14 @@ export const Footer = () => {
     <footer className={css.footer}>
       <p style={{ marginBottom: "0" }}>© Copyright Fishing 2023</p>
       <address className={css.adress}>
-        <ul className={css.adressList}></ul>
+        <ul className={css.adressList}>
+          <li class="adress-list__item">
+            <a href="mailto:alex.berd86@gmail.com">alex.berd86@gmail.com</a>
+          </li>
+          <li class="adress-list__item">
+            <a href="tel:+380673588786">+38 067 358 87 86</a>
+          </li>
+        </ul>
         <ul className={css.socList}>
           <li className={css.socItem}>
             <SocialIcon
