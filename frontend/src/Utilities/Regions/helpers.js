@@ -2,7 +2,7 @@ import axios from "axios";
 import { URL } from "./URL";
 import { patchImageUrl } from "./URL";
 
-export const getRegions = async ({ page, perPage = 4 }) => {
+export const getRegions = async ({ page, perPage }) => {
   return await axios
     .get(`${URL}?page=${page}&limit=${perPage}`)
     .then((response) => response.data.data.results)
