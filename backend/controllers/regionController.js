@@ -33,10 +33,35 @@ class regionController {
       res.status(400);
       throw new Error("Unable to fetch the data");
     }
+    const page = parseInt(req.query.page);
+    const limit = parseInt(req.query.limit);
+    // calculating the starting and ending index
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const results = {};
+    if (endIndex < region.length) {
+      results.next = {
+        page: page + 1,
+        limit: limit,
+      };
+    }
+
+    if (startIndex > 0) {
+      results.previous = {
+        page: page - 1,
+        limit: limit,
+      };
+    }
+
+    results.results = region.slice(startIndex, endIndex);
+
+    res.paginatedResults = results;
+    console.log(res.paginatedResults);
     res.status(201).json({
       code: 200,
       message: "Successful success",
-      data: region,
+      data: results,
       quantity: region.length,
     });
   };

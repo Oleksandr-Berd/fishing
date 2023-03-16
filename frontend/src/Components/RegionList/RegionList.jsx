@@ -11,11 +11,20 @@ import { Dna } from "react-loader-spinner";
 export const RegionList = () => {
   const [regions, setRegions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setLoading(true);
-    getRegions().then(setRegions).finally(setLoading(false));
-  }, []);
+    getRegions({ page }).then(setRegions).finally(setLoading(false));
+  }, [page]);
+
+  const shoudlLoadingButton = regions.length > 0 && !loading;
+
+  const loadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+    console.log(page);
+  };
+
   return (
     <>
       <ButtonContainer>
@@ -44,7 +53,7 @@ export const RegionList = () => {
               image={image}
             />
           ))}
-
+        {shoudlLoadingButton && <button onClick={loadMore}>Load More</button>}
         <Outlet />
       </ul>
     </>
