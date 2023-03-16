@@ -10,6 +10,9 @@ export const FormAddImage = ({ locPath, id }) => {
 
     postNewImage(formData, locPath).finally(
       patchNewImage(formData, locPath, id)
+      //         .finally(
+      //     window.location.reload(false)
+      //   )
     );
   };
 
