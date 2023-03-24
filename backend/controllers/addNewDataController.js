@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs/promises");
 const { v4 } = require("uuid");
-const locKyivModel = require("../models/locKyivModel");
+const locationModel = require("../models/locationModel");
 
 const KyivPictureDir = path.join(__dirname, "..", "public", "kyivLocPictures");
 
@@ -28,7 +28,7 @@ class addNewDataController {
   };
   updateKyivData = async (req, res) => {
     const { id } = req.params;
-    const locKyiv = await locKyivModel.findByIdAndUpdate(id, {
+    const locKyiv = await locationModel.findByIdAndUpdate(id, {
       picture: picturesKyiv,
     });
     if (!locKyiv) {

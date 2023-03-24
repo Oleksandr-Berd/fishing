@@ -4,7 +4,7 @@ import { patchImageUrl } from "./URL";
 
 export const getRegions = async ({ page, perPage }) => {
   return await axios
-    .get(`${URLpaginate}?page=${page}&limit=${perPage}`)
+    .get(`${URL}?page=${page}&limit=${perPage}`)
     .then((response) => response.data.data.results)
     .catch((err) => console.log(err));
 };

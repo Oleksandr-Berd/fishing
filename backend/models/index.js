@@ -1,5 +1,5 @@
-const locKyivModel = require("./locKyivModel");
+const locationModel = require("./locationModel");
 const usersModel = require("./usersModel");
 const regionModel = require("./regionModel");
 
-module.exports = { locKyivModel, usersModel, regionModel };
+module.exports = { locationModel, usersModel, regionModel };

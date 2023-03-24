@@ -50,17 +50,15 @@ export const RegionList = () => {
         />
       )}
       <ul className={css.container}>
-        {regions
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map(({ _id, name, locPath, image }) => (
-            <Regions
-              key={_id}
-              id={_id}
-              name={name}
-              locPath={locPath}
-              image={image}
-            />
-          ))}
+        {regions.map(({ _id, name, locPath, image }) => (
+          <Regions
+            key={_id}
+            id={_id}
+            name={name}
+            locPath={locPath}
+            image={image}
+          />
+        ))}
       </ul>
       <ButtonContainer>
         {shouldBackButton && (
